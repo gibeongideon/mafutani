@@ -1,0 +1,714 @@
+
+{% extends "layouts/base.html" %}
+<!-- Static assets -->
+    {% block header %}
+                          
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                                </li>
+               
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'spinx:spinx' %}">Spin&Win</a>
+                                </li>                                                 
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/affiliate">Affiliate</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'home:contact' %}">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'home:dashboard' %}">Dashboard</a>
+                                </li> 
+       
+    {% endblock header%}
+    
+
+{% block content %}
+
+    <!-- Banner Section start -->
+    <section class="banner-section inner-banner soccer-bets">
+        <div class="overlay">
+            <div class="shape-area">
+                <img src="/static/winza/img/winner-cup.png" class="obj-1" alt="image">
+                <img src="/static/winza/img/coin-5.png" class="obj-2" alt="image">
+                <img src="/static/winza/img/coin-3.png" class="obj-3" alt="image">
+                <img src="/static/winza/img/coin-6.png" class="obj-4" alt="image">
+                <img src="/static/winza/img/coin-9.png" class="obj-5" alt="image">
+                <img src="/static/winza/img/coin-8.png" class="obj-6" alt="image">
+                <img src="/static/winza/img/coin-7.png" class="obj-7" alt="image">
+            </div>
+            <div class="banner-content">
+                <div class="container">
+                    <div class="content-shape">
+                        <img src="/static/winza/img/coin-1.png" class="obj-8" alt="image">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-10">
+                            <div class="main-content">
+                                <h1>Soccer Bet </h1>
+                                <div class="breadcrumb-area">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb d-flex align-items-center">
+                                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Soccer Bet</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section end -->
+
+    <!-- All Soccer Bets start -->
+    <section class="bet-this-game all-soccer-bets bets-2">
+        <div class="overlay">
+            <div class="container">
+                <div class="filter-section mb-60">
+                    <div class="section-text text-center">
+                        <h3>All Soccer Bets</h3>
+                    </div>
+                    <form action="/">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="input-area">
+                                    <img src="/static/winza/img/search-icon.png" alt="icon">
+                                    <input type="text" placeholder="Search by League name">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="single-input">
+                                    <select style="display: none;">
+                                        <option>Search by team name</option>
+                                        <option value="2">Team 1</option>
+                                        <option value="3">Team 2</option>
+                                        <option value="4">Team 3</option>
+                                    </select><div class="nice-select" tabindex="0"><span class="current">Search by team name</span><ul class="list"><li data-value="Search by team name" class="option selected">Search by team name</li><li data-value="2" class="option">Team 1</li><li data-value="3" class="option">Team 2</li><li data-value="4" class="option">Team 3</li></ul></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="single-input">
+                                    <select style="display: none;">
+                                        <option>Select League</option>
+                                        <option value="1">League 1</option>
+                                        <option value="2">League 2</option>
+                                        <option value="3">League 3</option>
+                                    </select><div class="nice-select" tabindex="0"><span class="current">Select League</span><ul class="list"><li data-value="Select League" class="option selected">Select League</li><li data-value="1" class="option">League 1</li><li data-value="2" class="option">League 2</li><li data-value="3" class="option">League 3</li></ul></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="input-area">
+                                    <img src="/static/winza/img/date-icon.png" alt="icon">
+                                    <input type="text" id="dateSelect" placeholder="Select Date" class="hasDatepicker">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row cus-mar">
+                    <div class="col-xxl-3 col-lg-4">
+                        <div class="sidebar position-sticky top-0">
+                            <div class="single-sidebar">
+                                <h5 class="title-area m-none">Latest Teams</h5>
+                                <div class="single-item">
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox" checked="checked">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/team-logo-1.png" alt="icon">
+                                                <span>Busan Ipark</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/team-logo-2.png" alt="icon">
+                                                <span>Anyang</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/team-logo-3.png" alt="icon">
+                                                <span>Raufoss</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/team-logo-4.png" alt="icon">
+                                                <span>Åsane</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/team-logo-5.png" alt="icon">
+                                                <span>Apollon</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="single-sidebar">
+                                <h5 class="title-area">Latest Games</h5>
+                                <div class="single-item">
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox" checked="checked">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <span>Appollon <span class="vs">VS</span> Ethnikeos</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <span>Strommen <span class="vs">VS</span> Aalesund</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <span>Grorud <span class="vs">VS</span> Jerv</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <span>Fredrikstad <span class="vs">VS</span> stjordals</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <span>KFUM <span class="vs">VS</span> Sandnes UIf</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <span>Djurgarden <span class="vs">VS</span> Mjallby</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="single-sidebar">
+                                <h5 class="title-area">Sports</h5>
+                                <div class="single-item">
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox" checked="checked">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-1.png" alt="icon">
+                                                <span>Busan Ipark</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-2.png" alt="icon">
+                                                <span>NBA</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-3.png" alt="icon">
+                                                <span>Soccer</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-4.png" alt="icon">
+                                                <span>American Football</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-5.png" alt="icon">
+                                                <span>Horse Racing</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-6.png" alt="icon">
+                                                <span>Rugby Union</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-7.png" alt="icon">
+                                                <span>Ice Hockey</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-8.png" alt="icon">
+                                                <span>Boxing</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-9.png" alt="icon">
+                                                <span>Cricket</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-10.png" alt="icon">
+                                                <span>Baseball</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                    <label class="checkbox-single d-flex align-items-center">
+                                        <span class="left-area">
+                                            <span class="checkbox-area d-flex">
+                                                <input type="checkbox">
+                                                <span class="checkmark"></span>
+                                            </span>
+                                            <span class="item-title d-flex align-items-center">
+                                                <img src="/static/winza/img/sports-logo-11.png" alt="icon">
+                                                <span>Esports</span>
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-9 col-lg-8">
+                        <div class="single-area">
+                            <div class="head-area d-flex align-items-center">
+                                <span class="mdr cmn-btn">Pick Winner</span>
+                                <p>Mar 23, 2022,3:45PM EDT</p>
+                            </div>
+                            <div class="main-content">
+                                <div class="team-single">
+                                    <h4>Arsenal</h4>
+                                    <span class="mdr">Home</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-1(1).png" alt="image">
+                                    </div>
+                                </div>
+                                <div class="mid-area text-center">
+                                    <div class="countdown d-flex align-items-center justify-content-center">
+                                        <h4>
+                                            <span class="hours">17</span><span class="ref">h</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="minutes">12</span><span class="ref">m</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="seconds">26</span><span class="ref">s</span>
+                                        </h4>
+                                    </div>
+                                    <h6>Division- Belarus</h6>
+                                </div>
+                                <div class="team-single">
+                                    <h4>Volna</h4>
+                                    <span class="mdr">Away</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-2(1).png" alt="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-item">
+                                <button type="button" class="cmn-btn firstTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Eagle will win</button>
+                                <button type="button" class="cmn-btn draw" data-bs-toggle="modal" data-bs-target="#betpop-up">Draw</button>
+                                <button type="button" class="cmn-btn lastTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Paeek will win</button>
+                            </div>
+                        </div>
+                        <div class="single-area">
+                            <div class="head-area d-flex align-items-center">
+                                <span class="mdr cmn-btn">Pick Winner</span>
+                                <p>Mar 23, 2022,3:45PM EDT</p>
+                            </div>
+                            <div class="main-content">
+                                <div class="team-single">
+                                    <h4>Apollon</h4>
+                                    <span class="mdr">Home</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-3(1).png" alt="image">
+                                    </div>
+                                </div>
+                                <div class="mid-area text-center">
+                                    <div class="countdown d-flex align-items-center justify-content-center">
+                                        <h4>
+                                            <span class="hours">17</span><span class="ref">h</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="minutes">12</span><span class="ref">m</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="seconds">26</span><span class="ref">s</span>
+                                        </h4>
+                                    </div>
+                                    <h6>Division (Cyprus)</h6>
+                                </div>
+                                <div class="team-single">
+                                    <h4>Paeek</h4>
+                                    <span class="mdr">Away</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-4(1).png" alt="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-item">
+                                <button type="button" class="cmn-btn firstTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Eagle will win</button>
+                                <button type="button" class="cmn-btn draw" data-bs-toggle="modal" data-bs-target="#betpop-up">Draw</button>
+                                <button type="button" class="cmn-btn lastTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Paeek will win</button>
+                            </div>
+                        </div>
+                        <div class="single-area">
+                            <div class="head-area d-flex align-items-center">
+                                <span class="mdr cmn-btn">Pick Winner</span>
+                                <p>Mar 23, 2022,3:45PM EDT</p>
+                            </div>
+                            <div class="main-content">
+                                <div class="team-single">
+                                    <h4>Raufoss</h4>
+                                    <span class="mdr">Home</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-5(1).png" alt="image">
+                                    </div>
+                                </div>
+                                <div class="mid-area text-center">
+                                    <div class="countdown d-flex align-items-center justify-content-center">
+                                        <h4>
+                                            <span class="hours">17</span><span class="ref">h</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="minutes">12</span><span class="ref">m</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="seconds">26</span><span class="ref">s</span>
+                                        </h4>
+                                    </div>
+                                    <h6>Division (Norway)</h6>
+                                </div>
+                                <div class="team-single">
+                                    <h4>Åsane</h4>
+                                    <span class="mdr">Away</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-6.png" alt="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-item">
+                                <button type="button" class="cmn-btn firstTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Eagle will win</button>
+                                <button type="button" class="cmn-btn draw" data-bs-toggle="modal" data-bs-target="#betpop-up">Draw</button>
+                                <button type="button" class="cmn-btn lastTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Paeek will win</button>
+                            </div>
+                        </div>
+                        <div class="single-area">
+                            <div class="head-area d-flex align-items-center">
+                                <span class="mdr cmn-btn">Pick Winner</span>
+                                <p>Mar 23, 2022,3:45PM EDT</p>
+                            </div>
+                            <div class="main-content">
+                                <div class="team-single">
+                                    <h4>Lida</h4>
+                                    <span class="mdr">Home</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-6.png" alt="image">
+                                    </div>
+                                </div>
+                                <div class="mid-area text-center">
+                                    <div class="countdown d-flex align-items-center justify-content-center">
+                                        <h4>
+                                            <span class="hours">17</span><span class="ref">h</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="minutes">12</span><span class="ref">m</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="seconds">26</span><span class="ref">s</span>
+                                        </h4>
+                                    </div>
+                                    <h6>Division (Cyprus)</h6>
+                                </div>
+                                <div class="team-single">
+                                    <h4>Paeek</h4>
+                                    <span class="mdr">Away</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-7.png" alt="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-item">
+                                <button type="button" class="cmn-btn firstTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Eagle will win</button>
+                                <button type="button" class="cmn-btn draw" data-bs-toggle="modal" data-bs-target="#betpop-up">Draw</button>
+                                <button type="button" class="cmn-btn lastTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Paeek will win</button>
+                            </div>
+                        </div>
+                        <div class="single-area">
+                            <div class="head-area d-flex align-items-center">
+                                <span class="mdr cmn-btn">Pick Winner</span>
+                                <p>Mar 23, 2022,3:45PM EDT</p>
+                            </div>
+                            <div class="main-content">
+                                <div class="team-single">
+                                    <h4>Sūduva</h4>
+                                    <span class="mdr">Home</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-8.png" alt="image">
+                                    </div>
+                                </div>
+                                <div class="mid-area text-center">
+                                    <div class="countdown d-flex align-items-center justify-content-center">
+                                        <h4>
+                                            <span class="hours">17</span><span class="ref">h</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="minutes">12</span><span class="ref">m</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="seconds">26</span><span class="ref">s</span>
+                                        </h4>
+                                    </div>
+                                    <h6>Division- Belarus</h6>
+                                </div>
+                                <div class="team-single">
+                                    <h4>Dainava</h4>
+                                    <span class="mdr">Away</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-9.png" alt="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-item">
+                                <button type="button" class="cmn-btn firstTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Eagle will win</button>
+                                <button type="button" class="cmn-btn draw" data-bs-toggle="modal" data-bs-target="#betpop-up">Draw</button>
+                                <button type="button" class="cmn-btn lastTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Paeek will win</button>
+                            </div>
+                        </div>
+                        <div class="single-area">
+                            <div class="head-area d-flex align-items-center">
+                                <span class="mdr cmn-btn">Pick Winner</span>
+                                <p>Mar 23, 2022,3:45PM EDT</p>
+                            </div>
+                            <div class="main-content">
+                                <div class="team-single">
+                                    <h4>Eagle</h4>
+                                    <span class="mdr">Home</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-10.png" alt="image">
+                                    </div>
+                                </div>
+                                <div class="mid-area text-center">
+                                    <div class="countdown d-flex align-items-center justify-content-center">
+                                        <h4>
+                                            <span class="hours">17</span><span class="ref">h</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="minutes">12</span><span class="ref">m</span><span class="seperator">:</span>
+                                        </h4>
+                                        <h4>
+                                            <span class="seconds">26</span><span class="ref">s</span>
+                                        </h4>
+                                    </div>
+                                    <h6>Division- Belarus</h6>
+                                </div>
+                                <div class="team-single">
+                                    <h4>Paeek</h4>
+                                    <span class="mdr">Away</span>
+                                    <div class="img-area">
+                                        <img src="/static/winza/img/team-logo-11.png" alt="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-item">
+                                <button type="button" class="cmn-btn firstTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Eagle will win</button>
+                                <button type="button" class="cmn-btn draw" data-bs-toggle="modal" data-bs-target="#betpop-up">Draw</button>
+                                <button type="button" class="cmn-btn lastTeam" data-bs-toggle="modal" data-bs-target="#betpop-up">Paeek will win</button>
+                            </div>
+                        </div>
+                        <div class="row mt-60">
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                                    <ul class="pagination justify-content-center align-items-center">
+                                        <li class="page-item">
+                                            <a class="page-btn previous" href="javascript:void(0)" aria-label="Previous">
+                                                <img src="/static/winza/img/arrow-left.png" alt="icon">
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link xlr" href="javascript:void(0)">1</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link xlr active" href="javascript:void(0)">2</a></li>
+                                        <li class="page-item"><a class="page-link xlr" href="javascript:void(0)">3</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link xlr" href="javascript:void(0)">4</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-btn next" href="javascript:void(0)" aria-label="Next">
+                                                <img src="/static/winza/img/arrow-right.png" alt="icon">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- All Soccer Bets end -->
+
+
+{% endblock content %}
+
+    
+    {% block footer %}
+
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+          
+            <div class="footer-bottom-area pt-120">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="menu-item">
+                            <a href="/" class="logo">
+                                <img src="/static/winza/img/logo.png" alt="logo">
+                            </a>
+                            <ul class="footer-link">
+                                <li><a href="{% url 'home:contact' %}">Contact</a></li>
+                                <li><a href="/">Terms of Services</a></li>
+                                <li><a href="/">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="copyright">
+                            <div class="copy-area">
+                                <p> Copyright ©2022 <a href="https://github.com/gibeongideon">Winzangu</a>|All rights reserved<a href="https://github.com/gibeongideon" class="auth">®</a>
+                                </p>
+                            </div>
+                            <div class="social-link d-flex align-items-center">
+                                <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+      
+    {% endblock footer %}
+

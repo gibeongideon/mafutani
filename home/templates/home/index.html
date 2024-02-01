@@ -1,0 +1,171 @@
+{% extends "layouts/base.html" %}
+<!-- Static assets -->
+{% load static %}
+{% load humanize %}
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+    <!-- Banner Section start -->
+    <section class="banner-section">
+        <div class="overlay">
+            <div class="shape-area">
+                <img src="{% static  'winza/img/coin-2.png' %}" class="obj-1" alt="image">
+                <img src="{% static  'winza/img/winner-cup.png' %}" class="obj-2" alt="image">
+            </div>
+            <div class="banner-content">
+                <div class="container">
+                    <div class="content-shape">
+                        <img src="{% static  'winza/img/coin-1.png' %}" class="obj-1" alt="image">
+                        <img src="{% static  'winza/img/coin-3.png' %}" class="obj-2" alt="image">
+                        <img src="{% static  'winza/img/coin-3.png' %}" class="obj-3" alt="image">
+                        <img src="{% static  'winza/img/coin-4.png' %}" class="obj-4" alt="image">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-10">
+                            <div class="main-content">
+                                <div class="top-area section-text">
+                                    <h4 class="sub-title">Bet &amp; Win Today!</h4>
+                                    <h1 class="title">Winzangu Spin &amp Win</h1>
+                                    <p class="xlr">The fastest, easiest way to win &amp; 
+                                        Keep spinning and have fun  as you win real cash</p>
+                                </div>
+                                <div class="bottom-area">
+                                    <span class="btn-border">
+                                        {% if not user.is_authenticated %}
+                                        <button type="button" class="cmn-btn reg" data-bs-toggle="modal" data-bs-target="#loginMod">
+                                            Get Started Now
+                                        </button>
+                                        {% endif %}
+                                        {% if user.is_authenticated %}
+                                        <a href="{% url 'spinx:spinx' %}">
+                                        <button type="button" class="cmn-btn reg">
+                                            Play Now
+                                        </button>  
+                                        </a>
+                                        {% endif %}                                      
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="counter-section">
+            <div class="container">
+                <div class="row cus-mar">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="single-area d-flex align-items-center">
+                            <div class="img-area">
+                                <img src="{% static  'winza/img/counter-icon-1.png' %}" alt="image">
+                            </div>
+                            <div class="text-area">
+                                <h3 class="m-none"><span>$</span><span class="counter">{{stat.pp|intcomma}}</span></h3>
+                                <p>Paid Out Prize in Total</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="single-area d-flex align-items-center">
+                            <div class="img-area">
+                                <img src="{% static  'winza/img/counter-icon-2.png' %}" alt="image">
+                            </div>
+                            <div class="text-area">
+                                <h3 class="m-none"><span class="counter">{{stat.wpp|intcomma}}</span></h3>
+                                <p>Winners</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="single-area d-flex align-items-center">
+                            <div class="img-area">
+                                <img src="{% static  'winza/img/counter-icon-3.png' %}" alt="image">
+                            </div>
+                            <div class="text-area">
+                                <h3 class="m-none"><span class="counter">{{stat.upp|intcomma}}</span></h3>
+                                <p>Players online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section end -->
+
+
+
+    <!-- FAQs In start -->
+    <section class="faqs-section">
+        <div class="overlay pt-120">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-header text-center">
+                            <h5 class="sub-title">Frequently Asked Questions</h5>
+                            <h2 class="title">If you have questions we have answer</h2>
+                            <p>Answers for our most popular questions about Spin&Win and Winzangu</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row faq-bg d-flex justify-content-center">
+                    <div class="col-xl-10">
+                        <div class="faq-box mt-60 mb-60">
+                            <div class="accordion" id="accordionFaqs">    
+                           {% for aq in faqq %}
+                                
+                                <div class="accordion-item">
+                                    <h5 class="accordion-header" id="heading{{aq.id}}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{aq.id}}" aria-expanded="false" aria-controls="collapse{{aq.id}}">
+                                            {{ aq.question }}
+                                        </button>
+                                    </h5>
+                                    <div id="collapse{{aq.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{aq.id}}" data-bs-parent="#accordionFaqs">
+                                        <div class="accordion-body">
+                                            <p>{{ aq.answer }}.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}  
+           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQs In end -->
+
+    <!-- Affilliate start -->
+    <section class="affilliate-section">
+        <div class="overlay pt-120">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-5 order-lg-0 order-1">
+                        <div class="img-area d-rtl">
+                            <img src="/static/winza/img/affilliate-image.png" alt="image" class="max-un">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="section-text">
+                            <h5 class="sub-title">Join forces with Winzangu</h5>
+                            <h2 class="title">Earn As Our Affilliate</h2>
+                            <p>Join the program and gain up to 50% revshare! Are you an experienced affiliate, and would
+                                like to set up your own rules? We are happy to get to know your offer. Partner with us
+                                and earn as your referrals start playing!</p>
+                        </div>
+                        <div class="bottom-area">
+                            <div class="btn-border d-inline-block">
+                                <a href="{% url 'home:affiliate' %}" class="cmn-btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Affilliate end -->
+
+   {% endblock content %}

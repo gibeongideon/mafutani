@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+# import netifaces
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +27,23 @@ SECRET_KEY = 'django-insecure-#0qf7ak3^far2%5(4*%!a2h4q4n=62oqg)8c790w_d!-!=@r1s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Find out what the IP addresses are at run time
+# This is necessary because otherwise Gunicorn will reject the connections
+
+
+# def ip_addresses():
+#     ip_list = []
+#     for interface in netifaces.interfaces():
+#         addrs = netifaces.ifaddresses(interface)
+#         for x in (netifaces.AF_INET, netifaces.AF_INET6):
+#             if x in addrs:
+#                 ip_list.append(addrs[x][0]['addr'])
+#     return ip_list
+
+# ALLOWED_HOSTS = ip_addresses()
+
+
+
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +56,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'users',
+    # 'spinx',
+    # 'base',
+    # 'bet',
+    # 'home',
+    # 'users',    
+    'rgames',
+    'home',
+    'spinx',
+    'accounts',
+    'mpesa_api.core',
+    'mpesa_api.util',
+    'paypal.pro',
+    'paypal.standard.ipn',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +116,21 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'django',
+#         'USER': 'django',
+#         'PASSWORD': '7cc09f7d3e3795ccc20c127878aa8e0e',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#         'OPTIONS': {'sslmode': 'require'},
+#     }
+# }
+
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -123,3 +173,85 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = "users.User"
+
+
+
+
+# login/logout redirect
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+JET_SIDE_MENU_COMPACT = True
+
+
+# Safaricom-specific settings Configs
+
+# B2C (Bulk Payment) Configs
+# see https://developer.safaricom.co.ke/test_credentials
+# https://developer.safaricom.co.ke/b2c/apis/post/paymentrequest
+#SECRET_MPESA_URL=''# config("SECRET_MPESA_URL", default=SECRET_ADMIN_URL)
+SECRET_MPESA_URL="pesa_backcall"
+MPESA_B2C_ACCESS_KEY = ''#config("MPESA_B2C_ACCESS_KEY", default="")
+MPESA_B2C_CONSUMER_SECRET = ''#config("MPESA_B2C_CONSUMER_SECRET", default="")
+
+B2C_SECURITY_TOKEN = ''#config("B2C_SECURITY_TOKEN", default="")###B1
+B2C_INITIATOR_NAME =''# config("B2C_INITIATOR_NAME", default="Darius Option")###B2
+B2C_COMMAND_ID = ''#config("B2C_COMMAND_ID", default="")###B3
+B2C_SHORTCODE = ''#config("B2C_SHORTCODE", default="")###B4
+B2C_QUEUE_TIMEOUT_URL = ''#config("B2C_QUEUE_TIMEOUT_URL", default="https://www.winzangu.ga/pesa/b2c/timeout")
+B2C_RESULT_URL =''# config("B2C_RESULT_URL", default="https://www.winzangu.ga/pesa/b2c/result")
+MPESA_URL = "https://sandbox.safaricom.co.ke"
+
+# C2B (Paybill) Configs
+# See https://developer.safaricom.co.ke/c2b/apis/post/registerurl
+
+MPESA_C2B_ACCESS_KEY =''# config("MPESA_C2B_ACCESS_KEY", default="")
+MPESA_C2B_CONSUMER_SECRET = ''#config("MPESA_C2B_CONSUMER_SECRET", default="")
+
+C2B_REGISTER_URL = ''#config("C2B_REGISTER_URL", default="")#
+C2B_VALIDATE_URL = ''#config("C2B_VALIDATE_URL", default="https://www.winzangu.ga/pesa/c2b/validate")
+C2B_CONFIRMATION_URL = ''#config("C2B_CONFIRMATION_URL", default="https://www.winzangu.ga/pesa/c2b/confirmation")
+C2B_SHORT_CODE =''# config("C2B_SHORT_CODE", default="")###N1
+C2B_RESPONSE_TYPE = ''#config("C2B_RESPONSE_TYPE", default="Completed")
+C2B_ONLINE_CHECKOUT_CALLBACK_URL = ''#"https://www.winzangu.ga/pesa/c2b/online_checkout/callback"
+C2B_ONLINE_PASSKEY = ''#config("C2B_ONLINE_PASSKEY", default="")###N2
+C2B_ONLINE_SHORT_CODE = ''#config("C2B_ONLINE_SHORT_CODE", default="")###N1
+C2B_ONLINE_PARTY_B = ''#config("C2B_ONLINE_PARTY_B", default="")###N1
+
+TOKEN_THRESHOLD = ''#config("TOKEN_THRESHOLD", default=600)  # , cast=int)
+
+#Paypal
+
+
+PAYPAL_BUY_BUTTON_IMAGE="https://www.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif"
+PAYPAL_RECEIVER_EMAIL ="winzangu@gmail.com"
+
+PAYPAL_TEST = False
+
+
+###USA/CANADA&UK
+
+PAYPAL_WPP_USER = "sb-h2ded6675419_api1.business.example.com"
+
+PAYPAL_WPP_PASSWORD = "DFXXXTJPDKBFA5KG"
+
+PAYPAL_WPP_SIGNATURE = "AM1aGgn2bz5QbLwfJWgM8rQPCVdfAjz3hKc8w9Pa8XdIFnHt-9r143O2"
+
+
+
+DJANGO_SETTINGS_MODULE = 'winzangu.settings'
+
+
+# Heroku: Update database configuration from $DATABASE_URL.
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
+
+
+
+# Creating Access Token for Sandbox
+PAYPAL_CLIENT_ID = ""
+PAYPAL_CLIENT_SECRET =""
+
+
+WHEEL_MAP = [20,6,5,0,100,50,20,0,3,2,1,0,500,0,20,10,5,0,200,25,30,0,4,2,1,0,1000,0]

@@ -1,0 +1,160 @@
+{% extends "layouts/base.html" %}
+<!-- Static assets -->
+{% load static %}
+
+{% block title %}Payment info{% endblock %}
+
+    {% block header %}
+                          
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'spinx:spinx' %}">Spin&Win</a>
+                                </li>                                                 
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/affiliate">Affiliate</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'home:contact' %}">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'home:dashboard' %}">Dashboard</a>
+                                </li> 
+       
+    {% endblock header%}
+
+    
+    {% block content %} 
+
+    <!-- Banner Section start -->
+    <section class="banner-section inner-banner contact">
+        <div class="overlay">
+            <div class="shape-area">
+                <img src="/static/winza/img/affiliate-banner.png" class="contact-illu" alt="image">
+            </div>
+            <div class="banner-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-10">
+                            <div class="main-content">
+                                <h1>Payment info</h1>
+                                <div class="breadcrumb-area">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb d-flex align-items-center">
+                                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Payment info</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section end -->
+
+
+    <!-- Contact In start -->
+    <section class="contact-section">
+        <div class="overlay">
+            <div class="container bg-area">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-header text-center">
+                            <h2 class="title">Payment info</h2>
+                            <p>Update details below before deposit & withrawals.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                    
+                        <div class="form-content">
+            
+            			
+								<div class="header-area">
+<h5 class="btn btn-fill btn-warning">{{mssg}}</h5>
+                            <h5 class="title">Current Profile Details</h5>
+
+                            <p class="sub-title">Email to receive paypal payments is <h5 class="btn btn-fill btn-info">{{user.email}}</h5>                             
+                            </p>
+                                                                   {% if user.update_count is not 0 %}
+                                                                							<form role="form" method="POST" action="{% url 'users:profile' %}">
+							    {% csrf_token %}
+
+                                <div >
+                                    <div class="form-area">           
+                                        <input type="email"  class="input-field" name="email" id="email" placeholder="paypal-email" required autofocus>									
+                                    </div>
+                                </div>
+           				
+						
+
+
+
+
+				
+								<button type="submit" class="cmn-btn reg" >Update</button>
+								
+							</form>   
+                                       {% endif %}
+
+                            
+                            							<p class="sub-title">Number to deposit & receive mpesa payments is <h5 class="btn btn-fill btn-info">{{user.phone_number}}</h5>                  
+                            							           
+                            </p>
+                                       
+                                       
+                                       {% if user.update_count is not 0 %}
+                                       							<form role="form" method="POST" action="{% url 'users:profile' %}">
+							    {% csrf_token %}
+
+        
+                                <div >
+                                    <div >                   
+                                        <input type="number" class="input-field" name="phone_number" class="form-control" max="300000000000"  min="100000000"  id="phone_number" placeholder="mpesa-phone_number" required>
+                                        
+                                    </div>
+                  
+                                </div>
+				
+						
+
+
+				
+								<div >
+									<button type="submit" class="cmn-btn reg" >Update</button>
+								</div>
+							</form>
+                                       {% endif %} 
+                                       
+						</div> 
+							</div>	
+            
+            
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact In end -->
+
+
+{% endblock content %}
+
+		
+
+
+								
+
+				
+	
+
+

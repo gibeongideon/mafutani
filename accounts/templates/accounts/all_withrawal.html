@@ -1,0 +1,161 @@
+{% extends "layouts/base.html" %}
+<!-- Static assets -->
+{% load static %}
+{% load humanize %}
+{% block title %}All Withrawals{% endblock %}
+
+
+    
+    {% block content %} 
+
+    <!-- Banner Section start -->
+    <section class="banner-section inner-banner contact">
+        <div class="overlay">
+            <div class="shape-area">
+                <img src="/static/winza/img/affiliate-banner.png" class="contact-illu" alt="image">
+            </div>
+            
+            <div class="banner-content">
+            <!--
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-10">
+                            <div class="main-content">
+                                <h1>Contact Us</h1>
+                                <div class="breadcrumb-area">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb d-flex align-items-center">
+                                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                 
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section end -->
+
+
+
+    
+    <!-- Contact In start -->
+    <section class="contact-section">
+        <div class="overlay">
+            <div class="container bg-area">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-header text-center">
+                            <h2 class="title">All Withrawals</h2>
+                            <p>Withrawals may take upto 2 hours  on pending state.Thereafter it will be approved and credited into your paypal({{request.user.email}}) or  mpesa({{request.user.phone_number}}).</p>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="form-content">
+
+                        
+                        
+                                                    <div class="table-responsive">
+                                                        <table class="table">
+                                                            <thead class=" text-primary">
+                                                                <tr>
+                                                                    <th scope="col">Date</th>
+                                                                    <th scope="col">Amount</th>
+                                                                    <th scope="col">Currency</th>
+                                                                    <th scope="col">Type</th>
+                                                                    <th scope="col">Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class=" text-info">
+                                                            {% for trans in trans_logz%}
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        {{trans.created_at|naturaltime}}
+                                                                    </th>
+                                                                    <td>{{trans.amount}}</td>
+                                                                    <td>{{trans.currency.name}}</td>
+                                                                    <td>{{trans.withr_type}}</td>
+                                                                    <td><a  class="cmn-btn">{{trans.withraw_status}}</a></td>
+                                                                </tr>
+                                                              {% endfor %}                                                                  
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                        
+                        
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact In end -->    
+
+
+{% endblock content %}
+	
+
+    
+     
+ {% block footer %}
+
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+          
+            <div class="footer-bottom-area pt-120">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="menu-item">
+                            <a href="/" class="logo">
+                                <img src="/static/winza/img/logo.png" alt="logo">
+                            </a>
+                            <ul class="footer-link">
+                                <li><a href="{% url 'home:contact' %}">Contact</a></li>
+                                <li><a href="/">Terms of Services</a></li>
+                                <li><a href="/">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="copyright">
+                            <div class="copy-area">
+                                <p> Copyright ©2022 <a href="https://github.com/gibeongideon">Winzangu</a>|All rights reserved<a href="https://github.com/gibeongideon" class="auth">®</a>
+                                </p>
+                            </div>
+                            <div class="social-link d-flex align-items-center">
+                                <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+      
+    {% endblock footer %}
+    		
+	
+	
+
+
+
+
+
+
+
+
+   

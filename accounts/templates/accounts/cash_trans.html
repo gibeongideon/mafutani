@@ -1,0 +1,186 @@
+{% extends "layouts/base.html" %}
+
+
+{% block content %}
+	<!-- Breadcrumb Area Start -->
+	{% comment %} <section class="breadcrumb-area bc-affiliate"> {% endcomment %}
+		{% comment %} <img class="bc-img" src="/static/assets/images/breadcrumb/affiliate.png" alt=""> {% endcomment %}
+		{% comment %} <div class="container"> {% endcomment %}
+
+		{% comment %} </div>
+	</section> {% endcomment %}
+	<!-- Breadcrumb Area End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- Awards Area Start -->
+	<section class="awards-area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-md-10">
+					<div class="section-heading">
+						<h5 class="subtitle">
+							Tranfers 
+						</h5>
+
+	<!-- Footer Area Start -->
+	{% comment %} <footer class="footer" id="footer">
+			<div class="subscribe-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="subscribe-box">
+
+              <div class="header-area">
+              <h4 class="title">Tranfer Tokens to Friend</h4>
+						<p class="sub-title">Enter recipient username/mobile number and tokens to tranfer.</p>
+					</div>
+
+
+<form action="{% url 'account:cash_trans' %}" method="post">
+    {% csrf_token %}
+
+    <div>
+      {% if form.errors %}
+      <span class="text-danger">{{ form.errors }}</span>
+      {% endif %}
+    </div>
+
+    <div class="col-lg-6 col-8 d-flex align-self-center">
+        <div class="form-area"> 
+            <input type="text" name="recipient"  class="input-field" placeholder="Recipient Username/Mobile" id="id_recipient"required autofocus>       
+        </div>
+    </div>   
+    
+    <div class="col-lg-6 col-8 d-flex align-self-center">
+        <div class="form-area"> 
+            <input type="number" name="amount" class="input-field" placeholder="Amount Here" step="10" required id="id_amount" autofocus>                    
+        </div>
+    </div>  
+
+    <div class="form-group">
+        <button type="submit" class="mybtn1">Send</button>
+		</div>
+
+  </form>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	</footer>  {% endcomment %}
+
+
+
+
+						<h2 class="title">
+							Recent Transfers
+						</h2>
+						{% comment %} <p class="text">
+							We update our site regularly; more and more winners are added every day! To locate the most recent winner's information
+						</p> {% endcomment %}
+					</div>
+				</div>
+			</div>
+			<div class="row">
+      
+
+                <div class="table-responsive">
+            <table class="table tablesorter " id="">
+              <thead class="text-primary">
+                <tr>
+                  <th>
+                    Date
+                  </th>
+                  <th>
+                    Amount
+                  </th>
+                  <th>
+                    From
+                  </th>                 
+                  <th>
+                    To
+                  </th>
+                  <th class="text-center">
+                    Status
+                  </th>
+                  <th class="text-center">
+                   
+                  </th>                  
+                </tr>
+              </thead>
+              <tbody class="text-info">
+                {% for trans in trans_logz%}
+  
+                <tr>
+                  <td>
+                    {{trans.created_at}}
+                  </td>
+                  <td>
+                    {{trans.amount}}
+                  </td>
+                  <td>
+                    {{trans.sender}}
+                  </td>                 
+                  <td>
+                    {{trans.recipient}}
+                  </td>
+                  <td class="text-center">
+                    {{trans.status}}
+                  </td>
+                  <td >
+                  
+                  <form action="{% url 'account:stop_cash_trans' %}" method="post">
+    {% csrf_token %}
+
+            <input type="number" name="pk" class="input-field" value={{trans.pk}}   hidden=true  id="pk" autofocus>                    
+
+    </div>  
+
+    <div class="form-group">
+        <button type="submit" class="mybtn1">Cancel</button>
+		</div>
+
+  </form>                               
+               
+
+                  </td>                  
+                </tr>
+  
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+            </div>
+							<a class="mybtn2" href="{% url 'account:cash_trans' %}">Refresh</a>
+						</div>
+
+     
+
+
+			</div>
+      			
+
+
+		</div>
+	</section>
+	<!-- Awards Area End -->
+
+
+
+
+{% endblock content %}

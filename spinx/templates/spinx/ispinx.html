@@ -1,0 +1,232 @@
+{% extends "layouts/base.html" %}
+<!-- Static assets -->
+{% load static %}
+{% block title %}xSpin{% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+<link rel="stylesheet" href="/static/wheel/css/main.css" type="text/css" />
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+
+  <!-- Nucleo Icons -->
+  {% comment %} <link href="{% static 'assets/css/nucleoo-icons.css' %}" rel="stylesheet" /> {% endcomment %}
+  <!-- CSS Files -->
+  <link href="{% static 'assets/css/black-dashboard.css' %}" rel="stylesheet" />
+{% endblock stylesheets %}
+
+    {% block header %}
+                          
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                                </li>                                         
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'spinx:spinx' %}">Spin&Win</a>
+                                </li>                                                 
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/affiliate">Affiliate</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'home:contact' %}">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'home:dashboard' %}">Dashboard</a>
+                                </li> 
+       
+    {% endblock header%}
+{% block content %}
+
+
+	
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="newsletter">
+                        <div class="section-text text-center">
+                            <h5 class="sub-title">Darius Wheel</h5>
+                            <h3 class="title">For Big Wins</h3>
+                            <p>Play with demo cash to learn before using real cash;Demo is like when using real account.</p>
+                            
+                            					<div align="center">
+						<table cellpadding="0" cellspacing="0" border="0">
+						  <tr>
+						   <h5 class="title">Spins:{{spins}}</h5>
+							<td width="438" height="562" class="the_wheel" align="center" valign="center">
+							  <canvas id="canvas" width="434" height="434">
+								<p align="center">Sorry, your browser doesn't support canvas.Please try another.</p>
+							  </canvas>              
+							</td>
+						  </tr>
+						</table>
+					
+						
+						
+                                {% if not user.is_authenticated %}                          
+                                <button type="button" class="cmn-btn reg" id="spin_button" data-bs-toggle="modal" data-bs-target="#loginMod">SPIN</button>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <button type="button" class="cmn-btn reg" id="spin_button" >SPIN</button>                                  
+                                {% endif %}
+                                
+                                					
+				
+				                            <div class="bottom-item">
+				                       
+				                                   </div>
+				
+				
+				
+					  </div> 
+                            
+                            
+                            
+                            
+                        </div>
+                                                    <div class="bottom-item">
+
+                            
+                                
+                            </div>
+                            
+                            
+			<form  id="stake-formw">
+
+
+										{% csrf_token %}	
+	  
+										  <div class="col-lg-6 col-8 d-flex align-self-center">.</div>
+										  <input  type="number" min ='5' max="{{user.accounts.tokens}}" name="amount" class="input-field" placeholder="Amount to bet" required=True id="bet-input" autofocus>
+										  
+										  
+										  <button type="button" class="cmn-btn reg" onclick="realY()">Real money<input  type="checkbox"  name="real_cash-input" id="real_cash-input"></button>
+                
+							
+									
+								
+								
+								
+								
+								                            {% if not user.is_authenticated %}
+                          
+                            
+                            <input   id="bet-submit" type="button" data-bs-toggle="modal" data-bs-target="#loginMod" value="Bet">                                
+                            {% endif %}
+                            
+                            {% if user.is_authenticated %}
+                            <input   id="bet-submit" type="button" value="Bet">
+                            {% endif %}
+								
+								
+								
+								
+								
+								
+								
+								
+								
+
+							</form>
+                    </div>
+                </div>
+            </div>
+
+    </footer>
+    <!-- Footer Area End -->
+    
+    
+  
+	
+	
+	
+	
+         
+{% endblock content %}
+
+
+
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script type="text/javascript" src="/static/wheel/js/Winwheel.js"></script>
+{% comment %} <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>  {% endcomment %}
+<script type="text/javascript" src="/static/wheel/js/TweenMax.min.js"></script>
+<script type="text/javascript" src="/static/wheel/js/xdarius.js"></script>
+
+<script>
+  function realA() {
+  
+  document.getElementById("realA").Textcontent = "ReaL";
+  
+  
+}
+  </script> 
+  
+      <script>
+  function realY() {
+  if (document.getElementById("real_cash-input").checked === true) {
+    document.getElementById("real_cash-input").checked = false;
+    document.getElementById("realA").content = "TRIAL";
+  } else {
+    document.getElementById("real_cash-input").checked = true;
+    document.getElementById("realA").content = "ReaL";
+  }
+  
+}
+  </script>   
+
+
+{% endblock javascripts %}
+
+    {% block footer %}
+
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+          
+            <div class="footer-bottom-area pt-120">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="menu-item">
+                            <a href="/" class="logo">
+                                <img src="/static/winza/img/logo.png" alt="logo">
+                            </a>
+                            <ul class="footer-link">
+                                <li><a href="{% url 'home:contact' %}">Contact</a></li>
+                                <li><a href="/">Terms of Services</a></li>
+                                <li><a href="/">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="copyright">
+                            <div class="copy-area">
+                                <p>Copyright ©2023 <a href="">Winzangu</a>|All rights reserved®|<a href="https://www.linkedin.com/in/kipngeno-gibeon-27b9765a/" class="auth">Darius Option™</a>
+                                </p>
+                            </div>
+                            </div>
+                            <div class="social-link d-flex align-items-center">
+                                <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+      
+    {% endblock footer %}
+
