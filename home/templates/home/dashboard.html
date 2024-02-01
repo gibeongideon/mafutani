@@ -1,0 +1,587 @@
+{% extends "layouts/base.html" %}
+<!-- Static assets -->
+{% load static %}
+{% load humanize %}
+{% block title %}Dashboard{% endblock %}
+
+    {% block header %}
+                          
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                                </li>            
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'spinx:spinx' %}">Spin&Win</a>
+                                </li>                                                 
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/affiliate">Affiliate</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'home:contact' %}">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'home:dashboard' %}">Dashboard</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'home:dashboard' %}">Share & Earn</a>
+                                </li> 
+                         
+    {% endblock header%}
+
+    
+    
+      {% block content %} 
+
+
+
+    <!-- Dashboard Content Section start -->
+    <section class="dashboard-content pt-120">
+        <div class="overlay">
+            <div class="dashboard-heading">
+                <div class="container">
+                    <div class="row justify-content-lg-end justify-content-between">
+                        <div class="col-xl-9 col-lg-12">
+                            <ul class="nav" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="dashboard-tab" data-bs-toggle="tab" data-bs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">dashboard</button>
+                                </li>
+ 
+                                {% comment %} <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab" aria-controls="deposit" aria-selected="false">deposit</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="withdraw-tab" data-bs-toggle="tab" data-bs-target="#withdraw" type="button" role="tab" aria-controls="withdraw" aria-selected="true">withdraw</button>
+                                </li> {% endcomment %}
+                                <!--
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="buy-crypto-tab" data-bs-toggle="tab" data-bs-target="#buy-crypto" type="button" role="tab" aria-controls="buy-crypto" aria-selected="false">buy crypto</button>
+                                </li>
+                                -->
+                                
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="affiliate-tab" data-bs-toggle="tab" data-bs-target="#affiliate" type="button" role="tab" aria-controls="affiliate" aria-selected="false">affiliate</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="transactions-tab" data-bs-toggle="tab" data-bs-target="#transactions" type="button" role="tab" aria-controls="transactions" aria-selected="false">transactions</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="setting-tab" data-bs-toggle="tab" data-bs-target="#setting" type="button" role="tab" aria-controls="setting" aria-selected="false">setting</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    {% comment %} <div class="col-xl-3 col-lg-4 col-md-6"> {% endcomment %}
+
+                        {% comment %} <div class="dashboard-sidebar">                  {% endcomment %}
+                            {% comment %} <div class="balance"> {% endcomment %}
+                                {% comment %} <div class="single-item">
+                                    <img src="/static/winza/img/dashboard-sidebar-icon-1.png" alt="images">
+                                    <h5>{{user.accounts.tokens|intcomma}}</h5>
+                                    <p>Available Balance</p>
+                                    <h5>{{user.accounts.trial_balance|intcomma}}</h5>
+                                    <p>Trial Balance</p> 
+                                    <h5>{{user.accounts.withrawable_balance|intcomma}}</h5>
+                                    <p>Withdrawable</p>                                                                       
+                                </div> {% endcomment %}
+                                {% comment %} <div class="bottom-area d-flex align-items-center justify-content-between">
+                                    <a href="javascript:void(0)" class="mdr withdraw-btn">Withdraw</a>
+                                    <a href="javascript:void(0)" class="mdr deposit-btn">Deposit</a>
+                                </div> {% endcomment %}
+                            {% comment %} </div>
+                                                         {% endcomment %}
+                            
+{% comment %}                   
+                        </div> {% endcomment %}
+                    {% comment %} </div> {% endcomment %}
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="tab-content">
+                            <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                                <div class="row">
+                                    <div class="col-xl-4 col-lg-6">
+                                        <div class="single-info">
+                                            <img src="/static/winza/img/affili4.png" alt="icon">
+                                            <div class="text-area">
+                                                <h4>{{request.user.referees_no}}</h4>
+                                                <p class="mdr">Total Referals</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6">
+                                        <div class="single-info">
+                                            <img src="/static/winza/img/user-info-icon-2.png" alt="icon">
+                                            <div class="text-area">
+                                                <h4>{{request.user.accounts.refer_balance|intcomma}}</h4>
+                                                <p class="mdr">Affiliate Earnings</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-6">
+                                        <div class="single-info">
+                                            <img src="/static/winza/img/user-info-icon-3.png" alt="icon">
+                                            <div class="text-area">
+                                                <h4>{{user.accounts.trans_count}}</h4>
+                                                <p class="mdr">Achievements</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <h5 class="title">Recent Activity</h5>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Date/Time</th>
+                                                        <th scope="col">Type</th>
+                                                        <th scope="col">Currency</th>
+                                                        <th scope="col">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                
+                                            {% for tran in transr%}
+                                                <tr>
+                                                    <th scope="row">{{tran.created_at}}</th>
+                                                    <td>{{tran.trans_type}}</td>
+                                                    <td>{{tran.currency}}</td>
+                                                    <td>
+                                                        <img src="/static/winza/img/dashboard-coin-icon-2.png" alt="icon">
+                                                        {{tran.value}}
+                                                    </td>
+                                                </tr>
+                                             {% endfor %}                                                                                             
+               
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            <div class="tab-pane fade" id="withdraw" role="tabpanel" aria-labelledby="setting-tab">
+              
+                                <div class="google-authentication mt-30" id="aaactive">
+                                    <h4>Select How to withdraw</h4>
+                                    
+                                    <div class="d-flex">
+                                        <ul class="nav" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a href="{% url 'accounts:paypal_withrawal' %}" class="cmn-btn">Paypal</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a href="{% url 'accounts:mpesa_withrawal' %}" class="cmn-btn">Mpesa</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                 <a href="{% url 'accounts:all_withrawal' %}" class="cmn-btn">All withdrawals</a>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="deposit" role="tabpanel" aria-labelledby="setting-tab">
+              
+                                <div class="google-authentication mt-30" id="aaactive">
+                                    <h4>Select How to Deposit</h4>
+                                    <div class="d-flex">
+                                        <ul class="nav" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="cmn-btn active" id="download-app-tab" data-bs-toggle="tab" data-bs-target="#download-appp" type="button" role="tab" aria-controls="download-app" aria-selected="true">Paypal</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a href="{% url 'accounts:mpesa_deposit' %}" class="cmn-btn">Mpesa</a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="download-appp" role="tabpanel" aria-labelledby="download-app-tab">
+                                            <div class="auth-container">
+                                                <p>Enter amount and click proceed to paypal to complete deposit.You  can deposit with any paypal email</p>					
+
+                                                <form action="{% url 'accounts:paypal-checkout' %}" method="post">
+                                                {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="single-input">
+                                                                <label for="loginpass">Amount in USD</label>
+                                                                <input type="number" name="amount" min="1" max="1000000"  placeholder="amount in USD" required id="id_amount">
+                                                            </div>
+                                                        </div>                                           
+                                                        <div class="col-lg-4">
+                                                            <span class="btn-border w-100">
+                                                                <button class="cmn-btn w-100" type="submit">Proceed to Paypal</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </form>    
+                                            </div>
+                                        </div>
+                                        
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                                              
+                       
+                       
+                            <div class="tab-pane fade active show" id="affiliate" role="tabpanel" aria-labelledby="affiliate-tab">
+                                <div class="affiliate-tab">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h5>Affiliate Program</h5>
+                                            <p>Get a lifetime rewards for inviting new people!Every time your referals bet you get up to 50% of their bet amount whether they WIN or LOSE! </p>
+                                            <div class="referral-bar">
+                                                <p>Share this massage .Anybody signing up through that link is yours!</p>
+                                                {% comment %} <div class="input-area"> {% endcomment %}
+                                                    {% comment %} <input id="shared" type="text" value="{{request.user.referal_link}}"> {% endcomment %}
+                                                    {% comment %} <img src="/static/winza/img/copy-icon.png" alt="icon"> {% endcomment %}
+
+
+                                                    <textarea id="textarea">{{ref_mssg}} {{request.user.referal_link}}</textarea>
+                                                  
+                                                    <button onclick="coppy()">Copy</button>
+                                                {% comment %} </div> {% endcomment %}
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-6">
+                                                    <div class="single-info">
+                                                        <img src="/static/winza/img/earned-referral-icon-1.png" alt="icon">
+                                                        <div class="text-area">
+                                                            <h4>{{request.user.accounts.refer_balance|intcomma}}</h4>
+                                                            <p class="mdr">Earned Referral</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="single-info">
+                                                        <img src="/static/winza/img/earned-referral-icon-2.png" alt="icon">
+                                                        <div class="text-area">
+                                                            <h4>{{request.user.accounts.ref30|intcomma}}</h4>
+                                                            <p class="mdr">Last Month</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="single-info">
+                                                        <img src="/static/winza/img/earned-referral-icon-1.png" alt="icon">
+                                                        <div class="text-area">
+                                                            <h4>{{request.user.referees_no}}</h4>
+                                                            <p class="mdr">Referrals Number</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="single-info">
+                                                        <img src="/static/winza/img/earned-referral-icon-1.png" alt="icon">
+                                                        <div class="text-area">
+                                                            <h4>{{request.user.accounts.ref1|intcomma}}</h4>
+                                                            <p class="mdr">Earned Today</p>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            
+                                            <div class="table-area">
+                                                <div class="head-area d-flex justify-content-between align-items-center">
+                                                    <h5>My Referrals Details</h5>
+                                                    <div class="input-area d-flex align-items-center">
+                                                        <input type="text" id="dateSelect" placeholder="015/08/2020 - 025/01/2021" class="hasDatepicker">
+                                                        <img src="/static/winza/img/date-icon.png" class="max-un" alt="icon">
+                                                    </div>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">Username</th>
+                                                                <th scope="col">Referees No</th>
+                                                                <th scope="col">Date Joined</th>
+                                                                <th scope="col">Last Login</th>
+                                                                <th scope="col">E-mail</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                           <tr>
+                                                           {% for userr in mine_users%} 
+                                                            <tr>
+                                                                <th scope="row">{{userr.username}}</th>
+                                                                <td>{{userr.referees_no}}</td>
+                                                                <td>{{userr.date_joined|naturaltime}}</td>
+                                                                <td>{{userr.last_login|naturaltime}}</td>
+                                                                <td>{{userr.email}}</td>
+                                                            </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                </div>
+                                                
+                                                
+                                                
+                                                
+                                            </div>
+                                            
+                                            
+                                            
+                            <div class="row mt-60">
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                                    <ul class="pagination justify-content-center align-items-center">
+                                        <li class="page-item">
+                                            <a class="page-btn previous" href="javascript:void(0)" aria-label="Previous">
+                                                <img src="/static/winza/img/arrow-left.png" alt="icon">
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link xlr" href="javascript:void(0)">1</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link xlr active" href="javascript:void(0)">2</a></li>
+                                        <li class="page-item"><a class="page-link xlr" href="javascript:void(0)">3</a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link xlr" href="javascript:void(0)">4</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-btn next" href="javascript:void(0)" aria-label="Next">
+                                                <img src="/static/winza/img/arrow-right.png" alt="icon">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        
+                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-pane fade" id="transactions" role="tabpanel" aria-labelledby="transactions-tab">
+                                <div class="transactions-tab">
+                                    {% comment %} <div class="head-area">
+                                        <form action="#">
+                                            <div class="single-input">
+                                                <label>Month</label>
+                                                <select style="display: none;">
+                                                    <option value="1">2022/01</option>
+                                                    <option value="2">2022/02</option>
+                                                    <option value="3">2022/03</option>
+                                                    <option value="4">2022/04</option>
+                                                </select><div class="nice-select" tabindex="0"><span class="current">2022/01</span><ul class="list"><li data-value="1" class="option selected">2022/01</li><li data-value="2" class="option">2022/02</li><li data-value="3" class="option">2022/03</li><li data-value="4" class="option">2022/04</li></ul></div>
+                                            </div>
+                                            <div class="single-input">
+                                                <label>Type</label>
+                                                <select style="display: none;">
+                                                    <option value="1">Win</option>
+                                                    <option value="2">Bet</option>
+                                                    <option value="3">Ref-Com</option>
+                                                    <option value="4">Deposit</option>
+                                                    <option value="4">Withraw</option>
+                                                </select><div class="nice-select" tabindex="0"><span class="current">Win</span><ul class="list"><li data-value="1" class="option selected">Bet</li><li data-value="2" class="option">Ref-Com</li><li data-value="3" class="option">Deposit</li><li data-value="4" class="option">Withraw</li></ul></div>
+                                            </div>
+
+                                            <div class="text-end">
+                                                <button>Filter</button>
+                                            </div>
+                                        </form>
+                                    </div> {% endcomment %}
+                                    
+                                    <!-- TRANSACTION-section start-->
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Date/Time</th>
+                                                    <th scope="col">Type</th>
+                                                    <!-- <th scope="col">Currency</th>-->
+                                                    <th scope="col">Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for tran in page_obj%}
+                                                <tr>
+                                                    <th scope="row">{{tran.created_at|naturaltime}}</th>
+                                                    <td>{{tran.trans_type}}</td>
+                                                   <!-- <td>{{tran.currency}}</td>-->
+                                                    <td>
+                                                        <img src="/static/winza/img/dashboard-coin-icon-2.png" alt="icon">
+                                                        {{tran.value}}
+                                                    </td>
+                                                </tr>
+                                             {% endfor %}  
+                           
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                       
+                                    
+                                    
+                                                            <div class="row mt-60">
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                <nav aria-label="Page navigation" class="d-flex justify-content-center">
+                                    <ul class="pagination justify-content-center align-items-center">
+                                        <li class="page-item">
+                                        {% if page_obj.has_previous %}
+                                        
+                                            <a class="page-btn previous" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                                <img src="/static/winza/img/arrow-left.png" alt="icon">
+                                                
+                                            </a>
+                                            {% endif %}
+                                        </li>
+                                        
+                                        
+                                        <li class="page-item">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</li>
+                                    
+                                        <li class="page-item">
+                                        {% if page_obj.has_next %}
+                                            <a class="page-btn next" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                                <img src="/static/winza/img/arrow-right.png" alt="icon">
+                                            </a>
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="tab-pane fade" id="setting" role="tabpanel" aria-labelledby="setting-tab">
+                                <div class="setting-tab">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="single-area">
+                                                <h5>Settings</h5>
+                                            </div>
+                                            <div class="single-area">
+                                                <div class="file-upload">
+                                                    <div class="img-area">
+                                                        <img src="/static/winza/img/demo-profile.png" alt="icon">
+                                                    </div>
+                                                    <div class="right-area">
+                                                        <p class="title">Upload profile photo via:</p>
+                                                        <label class="file">
+                                                            <input type="file">
+                                                            <span class="file-custom"></span>
+                                                        </label>
+                                                        <p class="mdr">Choose a photo from your personal computer. 3MB
+                                                            max.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="single-area">
+                                                <div class="icon-area">
+                                                    <img src="/static/winza/img/message-icon.png" alt="icon">
+                                                </div>
+                                                <p class="mdr">{{user.email}}</p>
+                                                <a href="/user/profile" class="mdr">Unverified
+                                                    Account</a>
+                                                    
+                                            </div>
+                                            <div class="single-area">
+                                                <div class="icon-area">
+                                                    <img src="/static/winza/img/security-icon.png" alt="icon">
+                                                </div>
+                                                <a href="{% url 'users:password_reset' %}" class="cmn-btn">Change Password</a>
+                                            </div>
+                                 
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                        
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Dashboard Content Section end -->
+
+ {% endblock content %}
+ 
+     
+ {% block footer %}
+
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+          
+            <div class="footer-bottom-area pt-120">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="menu-item">
+                            <a href="/" class="logo">
+                                <img src="/static/winza/img/logo.png" alt="logo">
+                            </a>
+                            <ul class="footer-link">
+                                <li><a href="{% url 'home:contact' %}">Contact</a></li>
+                                <li><a href="/">Terms of Services</a></li>
+                                <li><a href="/">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="copyright">
+                            <div class="copy-area">
+                                <p> Copyright ©2023 <a href="https://www.linkedin.com/in/kipngeno-gibeon-27b9765a/">Winzangu</a>|All rights reserved<a href="https://github.com/gibeongideon" class="auth">®</a>
+                                </p>
+                            </div>
+                            <div class="social-link d-flex align-items-center">
+                                <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+      
+    {% endblock footer %}
+
+{% block javascripts %}
+<script>
+    function copy() {
+        let textarea = document.getElementById("textarea");
+        textarea.select();
+        document.execCommand("copy");
+    }
+</script>
+
+
+<script>
+function coppy() {
+  // Get the text field
+  var copyText = document.getElementById("textarea");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+  
+  // Alert the copied text
+  alert("You Copied the text: " + copyText.value);
+}
+</script>
+
+{% endblock javascripts %}

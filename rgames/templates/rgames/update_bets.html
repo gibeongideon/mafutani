@@ -1,0 +1,69 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %} Refer Credit{% endblock %} 
+
+
+
+{% block content %}
+
+				<div class="col-lg-8 col-md-10">
+					<div class="section-heading">
+
+   
+						<h2 class="title">
+							
+              </h2>
+						<h5 class="subtitle">
+							Recent BETS 
+						</h5>	
+					</div>
+				</div>
+			</div>
+			<div class="row">
+
+              <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Amount
+                </th>
+                <th>
+                  Active
+                </th>
+                <th class="text-center">
+                  Status
+                </th>
+
+              </tr>
+            </thead>
+            <tbody class=" text-info">
+              {% for trans in bets%}
+
+              <tr>
+                <td>
+                  {{trans.created_at}}
+                </td>
+                <td>
+                  {{trans.amount}}
+                </td>
+                <td>
+                  {{trans.active}}
+                </td>
+                <td class="text-center">
+                  {{trans.status}}
+                </td>
+
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+       
+
+
+
+{% endblock content %}

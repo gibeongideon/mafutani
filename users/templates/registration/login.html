@@ -1,0 +1,118 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+
+
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="newsletter">
+                        <div class="section-text text-center">
+                            <h5 class="sub-title">Login </h5>
+                            <h3 class="title">Winzangu</h3>
+                            <p>Login and continue  winning!</p>
+                        </div>
+                        
+                                                                        <div class="form-area">
+                                                    <form role="form" method="POST" action="{% url 'users:login' %}">
+                                                    {% csrf_token %}
+                                                                                
+                            {% if form.errors %}
+                            <div class='text-danger'>
+                                Invalid credentials. Please try again.
+                            </div>
+                            {% endif %}
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="single-input">
+                                                                    <label for="logemail">Phone.No/Username*</label>
+                                                                    <input type="text" name="username" id="username" placeholder="Phone number you sign up with" required autofocus>
+                                                                </div>
+                                                                <div class="single-input">
+                                                                    <label for="logpassword">Password*</label>
+                                                                    <input type="password" name="password" id="password" placeholder="Password" required>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="remember-me">
+                                                
+                                                            <span >
+                                                                <a href="{% url 'users:password_reset' %}">Forgot Password</a>
+                                                            </span>   
+                                                     
+                                                                </div>
+                                                            </div>
+                                                            <span class="btn-border w-100">
+                                                                <button type="submit"  class="cmn-btn w-100">LOGIN</button>
+                                                            </span>
+                                                        </div>
+                                                    </form>
+                                                    <div class="bottom-area text-center">
+                                                        <p>Not a member ? <a href="{% url 'users:register' %}" class="reg-btn"></a>                                                                <button type="button" class="cmn-btn reg" data-bs-toggle="modal" data-bs-target="#loginMod">
+                                    Sign Up
+                                </button></p>
+                      
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                  
+                       
+                       
+                       
+                       
+                    </div>
+                </div>
+            </div>
+    </footer>
+    
+    {% endblock content %}
+    
+    {% block footer %}
+
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+          
+            <div class="footer-bottom-area pt-120">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="menu-item">
+                            <a href="/" class="logo">
+                                <img src="/static/winza/img/logo.png" alt="logo">
+                            </a>
+                            <ul class="footer-link">
+                                <li><a href="{% url 'home:contact' %}">Contact</a></li>
+                                <li><a href="/">Terms of Services</a></li>
+                                <li><a href="/">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="copyright">
+                            <div class="copy-area">
+                                <p> Copyright © <a href="https://github.com/gibeongideon">Winzangu</a> | Designed by
+                                    <a href="https://github.com/gibeongideon" class="auth">gideongibeon</a>
+                                </p>
+                            </div>
+                            <div class="social-link d-flex align-items-center">
+                                <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+      
+    {% endblock footer %}
+    
+    

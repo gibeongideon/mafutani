@@ -1,0 +1,140 @@
+	
+					
+
+{% extends "layouts/base.html" %}
+<!-- Static assets -->
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+
+    
+    {% block content %} 
+
+    <!-- Banner Section start -->
+    <section class="banner-section inner-banner contact">
+        <div class="overlay">
+            <div class="shape-area">
+                <img src="/static/winza/img/affiliate-banner.png" class="contact-illu" alt="image">
+            </div>
+            
+            <div class="banner-content">
+            <!--
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-10">
+                            <div class="main-content">
+                                <h1>Contact Us</h1>
+                                <div class="breadcrumb-area">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb d-flex align-items-center">
+                                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                 
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section end -->
+
+
+
+    
+    <!-- Contact In start -->
+    <section class="contact-section">
+        <div class="overlay">
+            <div class="container bg-area">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-header text-center">
+                            <h2 class="title">Paypal Withdrawal</h2>
+                            <p>You can withdraw a total of {{ user.accounts.withrawable_balance_USD}} USD to {{user.email}}</p>
+                            <a href="{% url 'users:profile' %}" class="cmn-btn">Update Email</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="form-content">
+                            <form action="{% url 'accounts:paypal_withrawal' %}" method="post">
+                            	{% csrf_token %}
+                                <div class="row justify-content-center">
+               
+                                    <div class="col-md-6">
+                                        <div class="single-input">
+                                            <label for="id_amount">Amount(USD)</label>
+                                            <input type="number" name="amount"  placeholder="amount here" step="1"  min="10"   max="{{user.accounts.withrawable_balance_USD}}" required id="id_amount"> 
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-sm-6 col-10">
+                                        <div class="btn-border w-100 mt-40">
+                                            <button  type="submit" class="cmn-btn w-100">Withdraw</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact In end -->    
+
+
+{% endblock content %}
+	
+
+    
+    {% block footer %}
+
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+          
+            <div class="footer-bottom-area pt-120">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="menu-item">
+                            <a href="/" class="logo">
+                                <img src="/static/winza/img/logo.png" alt="logo">
+                            </a>
+                            <ul class="footer-link">
+                                <li><a href="{% url 'home:contact' %}">Contact</a></li>
+                                <li><a href="/">Terms of Services</a></li>
+                                <li><a href="/">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="copyright">
+                            <div class="copy-area">
+                                <p> Copyright © <a href="https://github.com/gibeongideon">Winzangu</a> | Designed by
+                                    <a href="https://github.com/gibeongideon" class="auth">gideongibeon</a>
+                                </p>
+                            </div>
+                            <div class="social-link d-flex align-items-center">
+                                <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+      
+    {% endblock footer %}
+    		
+	

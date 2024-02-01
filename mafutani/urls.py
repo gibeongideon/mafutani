@@ -14,8 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", include("spinx.urls", namespace="spinx")),
+    path('home', include('home.urls')),
+    path("user/", include("users.urls", namespace="users")),
+    path('rgames/', include('rgames.urls')),
+    path('accounts/', include('accounts.urls')),
+    # path("spinx/", include("spinx.urls", namespace="spinx")),
+    path(settings.SECRET_MPESA_URL +"/pesa/", include("mpesa_api.core.urls", "mpesa")),#avoid fake callback by hackers
+    path('paypal/', include('paypal.standard.ipn.urls')), 
+    
 ]

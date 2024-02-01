@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Static assets -->
+    {% load static %}
+    {% load humanize %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Winzangu|{% block title %}Home{% endblock %}</title>
+
+    <link rel="shortcut icon" href="/static/winza/img/fav.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/winza/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/winza/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/static/winza/css/jquery-ui.css">
+    <link rel="stylesheet" href="/static/winza/css/nice-select.css">
+    <link rel="stylesheet" href="/static/winza/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/winza/css/slick.css">
+    <link rel="stylesheet" href="/static/winza/css/arafat-font.css">
+    <link rel="stylesheet" href="/static/winza/css/animate.css">
+    <link rel="stylesheet" href="/static/winza/css/style.css">
+    {% block stylesheets %}{% endblock stylesheets %}
+</head>
+
+<body><div id="StayFocusd-infobar" style="display: none; top: 0px;">
+    <img src="chrome-extension://laankejkbhbdhmipfmgcngdelahlfoji/common/img/eye_19x19_red.png">
+    <span id="StayFocusd-infobar-msg"></span>
+    <span id="StayFocusd-infobar-links">
+        <a id="StayFocusd-infobar-never-show">hide forever</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+        <a id="StayFocusd-infobar-hide">hide once</a>
+    </span>
+</div>
+    <!-- start preloader -->
+    <div class="preloader" id="preloader" style="opacity: 0; display: none;"></div>
+    <!-- end preloader -->
+
+    <!-- Scroll To Top Start-->
+    <a href="javascript:void(0)" class="scrollToTop"><i class="fas fa-angle-double-up"></i></a>
+    <!-- Scroll To Top End -->
+     
+    
+        <!-- header-section start -->
+    <header class="header-section user-dashboard">
+        <div class="overlay">
+            <div class="container">
+                <div class="row d-flex header-area">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="/">
+                            <img src="/static/winza/img/logo.png" class="logo" alt="logo">
+                        </a>
+
+                        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content">
+                            
+                            <img src="/static/winza/img/navvv.png" class="logo" alt="logo">
+                        </button>
+
+                        <div class="collapse navbar-collapse justify-content-end" id="navbar-content">
+                             <ul class="navbar-nav mr-auto mb-2 mb-lg-0"> 
+                             {% block header %}                           
+                          
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                                </li>
+                                 
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'spinx:spinx' %}">Spin&Win</a>
+                                </li>                                                 
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/affiliate">Affiliate</a>
+                                </li> 
+                                
+                        
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'home:contact' %}">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'home:dashboard' %}">Dashboard</a>
+                                </li>  
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'home:dashboard' %}">Share & Earn</a>
+                                </li> 
+                                {% if not user.is_authenticated %}
+                                <li class="nav-item">
+                                 <button type="button" class="cmn-btn reg" data-bs-toggle="modal" data-bs-target="#loginMod">Wallet
+                                 </button>
+                                </li>
+                                {% endif %}
+                                {% endblock header%}                              
+                                
+                            </ul>
+                            {% if not user.is_authenticated %}
+                            <div class="right-area header-action d-flex align-items-center max-un">
+                                <button type="button" class="login" data-bs-toggle="modal" data-bs-target="#loginMod">
+                                    Login
+                                </button>
+                                <button type="button" class="cmn-btn reg" data-bs-toggle="modal" data-bs-target="#loginMod">
+                                    Sign Up
+                                </button>
+                            </div>                                   
+                            {% endif %}
+                            
+                            {% if user.is_authenticated %}
+                           
+                            <div class="right-area header-action d-flex align-items-center max-un">
+                                <div class="single-item">
+                                     <button type="button" class="cmn-btn reg" data-bs-toggle="modal" data-bs-target="#walpop-up">
+                                            Wallet
+                                        </button>
+                                </div>
+                                
+                                <div class="single-item notifications-area">
+                                    <div class="notifications-btn active-dot">
+                                        <img src="/static/winza/img/notifications.png" alt="icon">
+                                        <span class="items">0</span>
+                                    </div>
+                                    <div class="main-area notifications-content">
+                                        <div class="head-area d-flex justify-content-between">
+                                            <div class="left d-flex align-items-center">
+                                                <h5>Notifications</h5>
+                                                <span class="mdr">0</span>
+                                            </div>
+                                            <button class="clear-all">
+                                                <img src="/static/winza/img/cancel-btn.png" alt="icon">
+                                            </button>
+                                        </div>
+                                        <ul>
+                                            <li class="border-area">
+                                                <a href="javascript:void(0)">
+                                                    <div class="img-area">
+                                                        
+                                                    </div>
+                                                    <div class="text-area">
+                                                       
+                                                    </div>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="single-item user-area">
+                                    <div class="user-btn d-flex align-items-center">
+                                        <span class="user-profile">
+                                            <img src="/static/winza/img/dashboard-profile-9.png" alt="icon">
+                                        </span>
+                                        <span class="name-area">{{request.user.username}}</span>                                        
+                                        
+                                    </div>
+                                    <div class="main-area user-content">
+                                        <div class="head-area d-flex">
+                                            <div class="img-area">
+                                                <img src="/static/winza/img/dashboard-profile-9.png" alt="icon">
+                                            </div>
+                                            <div class="text-area">
+                                                <h5>{{request.user.username}}</h5>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/static/winza/img/calendar-icon-2.png" alt="icon">
+                                                    <span>Joined {{request.user.date_jointed}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li class="border-area">
+                                                <a href="/dashboard" class="active">
+                                                    <img src="/static/winza/img/dashboard-icon.png" alt="icon">
+                                                    <p class="mdr">Dashboard</p>
+                                                </a>
+                                            </li>
+                         
+                               
+                                    
+                                            <li class="border-area">
+                                                <a href="/dashboard">
+                                                    <img src="/static/winza/img/history-icon.png" alt="icon">
+                                                    <p class="mdr">Transaction History</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="right-area header-action d-flex align-items-center max-un">
+                            <a href="{% url 'users:logout' %}" >
+                              <button type="button" class="login" >
+                                    Logout
+                              </button>
+                            </a>
+
+                            </div> 
+                             
+                            {% endif %}                          
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-section end -->
+    
+    
+    
+
+    
+     <!-- Login Registration start -->
+    <div class="log-reg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="modal fade" id="loginMod">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header justify-content-center">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <ul class="nav log-reg-btn justify-content-around">
+                                    <li class="bottom-area" role="presentation">
+                                        <button class="nav-link" id="regArea-tab" data-bs-toggle="tab" data-bs-target="#regArea" type="button" role="tab" aria-controls="regArea" aria-selected="false">
+                                            SIGN UP
+                                        </button>
+                                    </li>
+                                    <li class="bottom-area" role="presentation">
+                                        <button class="nav-link active" id="loginArea-tab" data-bs-toggle="tab" data-bs-target="#loginArea" type="button" role="tab" aria-controls="loginArea" aria-selected="true">
+                                            LOGIN
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="loginArea" role="tabpanel" aria-labelledby="loginArea-tab">
+                                        <div class="login-reg-content">
+                                            <div class="modal-body">
+                                                <div class="head-area">
+                                                    <h6 class="title">Winzangu Login</h6>
+                                                    <div class="social-link d-flex align-items-center">
+                                     
+                                                    </div>
+                                                </div>
+                                                <div class="form-area">
+                                                    <form role="form" method="POST" action="{% url 'users:login' %}">
+                                                    {% csrf_token %}
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="single-input">
+                                                                    <label for="logemail">Mobile No*</label>
+                                                                    <input type="text" name="username" id="username" placeholder="Mobile No. you sign up with" required autofocus>
+                                                                </div>
+                                                                <div class="single-input">
+                                                                    <label for="logpassword">Password*</label>
+                                                                    <input type="password" name="password" id="password" placeholder="Password" required>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="remember-me">
+                                                                    <label class="checkbox-single d-flex align-items-center">
+                                                                        <span class="left-area">
+                                                                            <span class="item-title d-flex align-items-center">
+                                                                                <span>Show Password</span>
+                                                                            </span>                                                                        
+                                                                            <span class="checkbox-area d-flex">
+                                                                                <input type="checkbox"  onclick="sPass1()">
+                                                                                <span class="checkmark"></span>
+                                                                            </span>
+
+                                                                        </span>
+                                                                    </label>
+                                                                    <a href="{% url 'users:password_reset' %}">Forgot Password</a>
+                                                                </div>
+                                                            </div>
+                                                            <span class="btn-border w-100">
+                                                                <button type="submit"  class="cmn-btn w-100">LOGIN</button>
+                                                            </span>
+                                                        </div>
+                                                    </form>
+                                                    <div class="bottom-area text-center">
+                                                        <p>Not a member ? <a href="javascript:void(0)" class="reg-btn">Register</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="regArea" role="tabpanel" aria-labelledby="regArea-tab">
+                                        <div class="login-reg-content regMode">
+                                            <div class="modal-body">
+                                                <div class="head-area">
+                                                    <h6 class="title">Register On Winzangu</h6>
+                                                    <div class="social-link d-flex align-items-center">
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="form-area">
+                                                    <form role="form" method="POST" action="{% url 'users:register' %}">
+                                                    {% csrf_token %}
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="single-input">
+                                                                    <label for="regemail">Mobile No*</label>
+                                                                    <input type="text" name="username" id="username"  placeholder="Mpesa No. to receive payments(i.e 0720...)" required>
+                                                                </div>
+                                                                <div class="single-input">
+                                                                    <label for="regpassword">Email*</label>
+                                                                    <input type="email" name="email" id="email"  placeholder="Email to receive paypal payouts" required>
+                                                                </div>
+                                                                <div class="single-input">
+                                                                    <label for="regpassword">Password*</label>
+                                                                    <input type="password" class="input-field" name="password1" id="password1"   placeholder="Password" required>
+                                                                </div>
+                                                                <div class="single-input">
+                                                                    <label for="regpassword">Confirm Password*</label>
+                                                                    <input type="password" class="input-field" name="password2" id="password2"   placeholder="Confirm Password" required>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            
+                                                            <div class="col-12">
+                                                            
+                                                                
+                                                                <div class="remember-me">
+                                                                    <label class="checkbox-single d-flex align-items-center">
+                                                                        <span class="left-area">
+                                                                            <span class="item-title d-flex align-items-center">
+                                                                                <span>Show Password</span>
+                                                                            </span>                                                                        
+                                                                            <span class="checkbox-area d-flex">
+                                                                                <input type="checkbox"  onclick="sPass2()">
+                                                                                <span class="checkmark"></span>
+                                                                            </span>
+
+                                                                        </span>
+                                                                    </label>   
+                                                                    
+                                                                    
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            
+                                                            <div class="col-12">     
+                                                            	<input type="checkbox"  id="input-terms" required>
+                                                            	<label for="input-terms">I agree with <a href="#">terms and Conditions</a> and  <a href="#">privacy policy</a>
+                                                            	</label>
+                                                            </div>                                                            
+                                                                                       
+                                                            <span class="btn-border w-100">
+                                                                <button type="submit"  class="cmn-btn w-100">SIGN UP</button>
+                                                            </span>
+                                                        </div>
+                                                    </form>
+                                                    <div class="bottom-area text-center">
+                                                        <p>Already a member ? <a href="javascript:void(0)" class="log-btn">Login</a></p>
+                                                    </div>
+                                                    <div class="counter-area">
+                                                        <div class="single">
+                                                            <div class="icon-area">
+                                                                <img src="/static/winza/img/signup-counter-icon-1.png" alt="icon">
+                                                            </div>
+                                                            <div class="text-area">
+                                                                <p>25,179k</p>
+                                                                <p class="mdr">Bets</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="single">
+                                                            <div class="icon-area">
+                                                                <img src="/static/winza/img/signup-counter-icon-2.png" alt="icon">
+                                                            </div>
+                                                            <div class="text-area">
+                                                                <p>6.65 BTC</p>
+                                                                <p class="mdr">Total Won</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login Registration end -->
+    
+        
+
+    
+    {% block content %}{% endblock content %}
+
+    
+    <!-- Betpop Up Modal start -->
+    <div class="betpopmodal">
+        <div class="modal fade" id="walpop-up" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xxl-8 col-xl-9 col-lg-11">
+                            <div class="modal-content">
+                            
+                                                        
+                            
+                            
+                            
+                            
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="top-item">
+                                        <button type="button" class="cmn-btn reg" data-bs-toggle="modal" data-bs-target="#witMod">Withraw  Funds</button>
+                                        <a href="/accounts/all_withrawal/" class="cmn-btn active draw">All Withrawals</a>
+                                        <button type="button" class="cmn-btn reg" data-bs-toggle="modal" data-bs-target="#depoMod">Deposit  Funds</button>
+                                    </div>
+                                    
+                                                                                                  
+                                           
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <div class="select-odds d-flex align-items-center">
+                                           <div class="single-area smart-value">
+                                            <div class="item-title d-flex align-items-center">
+                                                <p class="mdr">Trial Balance</p>
+                                            </div>
+                                            <div class="contact-val d-flex align-items-center">
+                                                <h4>{{user.accounts.trial_balance|intcomma}}</h4>
+                                                <h5></h5>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                  
+                                    </div>
+                                    
+                                    <div class="select-odds d-flex align-items-center">
+                                           <div class="single-area smart-value">
+                                            <div class="item-title d-flex align-items-center">
+                                                <p class="mdr">Available Balance</p>
+                                            </div>
+                                            <div class="contact-val d-flex align-items-center">
+                                                <h4>{{user.accounts.tokens|intcomma}}</h4>
+                                                <h5></h5>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                  
+                                    </div>
+                                    
+                                                                        <div class="mid-area">
+            
+                        
+                                        <div class="single-area smart-value">
+                                            <div class="item-title d-flex align-items-center">
+                                                <p class="mdr">Withrawable Balance</p>
+                                            </div>
+                                            <div class="contact-val d-flex align-items-center">
+                                                <h4>{{user.accounts.withrawable_balance|intcomma}} </h4>
+                                                <h5>T</h5>
+                                            </div>
+                                        </div>
+                                        <div class="single-area smart-value">
+                                            <div class="item-title d-flex align-items-center">
+                                                <p class="mdr">Cum-Referal Value</p>
+                                            </div>
+                                            <div class="contact-val d-flex align-items-center">
+                                                <h4>{{user.accounts.refer_balance|intcomma}}</h4>
+                                                <h5>T</h5>
+                                            </div>
+                                        </div> 
+                                        
+                                        <div class="single-area smart-value">
+                                            <div class="item-title d-flex align-items-center">
+                                                <p class="mdr">Withrawable Balance(USD)</p>
+                                            </div>
+                                            <div class="contact-val d-flex align-items-center">
+                                                <h4>{{user.accounts.withrawable_balance_USD|intcomma}}</h4>
+                                                <h5>USD</h5>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                                                                                                       
+                                    </div>
+                         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Betpop Up Modal end -->
+    
+     <!-- Wit start -->
+    <div class="log-reg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="modal fade" id="witMod">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                            <h6 class="title">Withraw</h6>
+                                <div class="modal-header justify-content-center">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <ul class="nav log-reg-btn justify-content-around">
+                                    <li class="bottom-area" role="presentation">
+                                        <a href="{% url 'accounts:paypal_withrawal' %}" class="cmn-btn">Use Paypal</a>
+                                    </li>
+                                    <li class="bottom-area" role="presentation">
+                                    <a href="{% url 'accounts:mpesa_withrawal' %}" class="cmn-btn">Use Mpesa</a>
+                                        
+                                    </li>
+                                </ul>
+                                
+       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Wit end -->
+    
+     <!-- DEPO start -->
+    <div class="log-reg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="modal fade" id="depoMod">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                            <h6 class="title">Deposit</h6>
+                                <div class="modal-header justify-content-center">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <ul class="nav log-reg-btn justify-content-around">
+                                    
+                                    <button type="button" class="cmn-btn reg" data-bs-toggle="modal" data-bs-target="#ppMod">Use Paypal</button>
+                                   
+                                    <li class="bottom-area" role="presentation">
+                                    <a href="{% url 'accounts:mpesa_deposit' %}" class="cmn-btn">Use Mpesa</a>
+                                        
+                                    </li>
+                                </ul>
+                                
+       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- DEPO end -->    
+    
+     <!-- PP start -->
+    <div class="log-reg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="modal fade" id="ppMod">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                            
+                                                            <div class="auth-container">
+                                                <p>Enter amount and click proceed to paypal to complete deposit.You  can deposit with any paypal email</p>					
+
+                                                <form action="{% url 'accounts:paypal-checkout' %}" method="post">
+                                                {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="single-input">
+                                                                <label for="loginpass">Amount in USD</label>
+                                                                <input type="number" name="amount" min="1" max="1000000"  placeholder="amount in USD" required id="id_amount">
+                                                            </div>
+                                                        </div>                                           
+                                                        <div class="col-lg-4">
+                                                            <span class="btn-border w-100">
+                                                                <button class="cmn-btn w-100" type="submit">Proceed to Paypal</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </form>    
+                                            </div>
+                            
+       
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PP end -->     
+    
+    <!-- Betpop Up Modal start -->
+    <div class="betpopmodal">
+        <div class="modal fade" id="betpop-up" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xxl-8 col-xl-9 col-lg-11">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="top-item">
+                                        <a href="javascript:void(0)" class="cmn-btn firstTeam">Eagle will win</a>
+                                        <a href="javascript:void(0)" class="cmn-btn active draw">Draw</a>
+                                        <a href="javascript:void(0)" class="cmn-btn lastTeam">Paeek will win</a>
+                                    </div>
+                                    <div class="select-odds d-flex align-items-center">
+                                        <h6>Select Odds</h6>
+                                        <div class="d-flex in-dec-val">
+                                            <input type="text" value="1.5" class="InDeVal2">
+                                            <div class="btn-area">
+                                                <button class="plus2">
+                                                    <img src="/static/winza/img/up-arrow.png" alt="iconr">
+                                                </button>
+                                                <button class="minus2">
+                                                    <img src="/static/winza/img/down-arrow.png" alt="iconr">
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mid-area">
+                                        <div class="single-area">
+                                            <div class="item-title d-flex align-items-center justify-content-between">
+                                                <span>Bet Value :</span>
+                                                <select style="display: none;">
+                                                    <option value="eth">ETH</option>
+                                                    <option value="eth">ETH</option>
+                                                    <option value="eth">ETH</option>
+                                                </select><div class="nice-select" tabindex="0"><span class="current">ETH</span><ul class="list"><li data-value="eth" class="option selected">ETH</li><li data-value="eth" class="option">ETH</li><li data-value="eth" class="option">ETH</li></ul></div>
+                                            </div>
+                                            <div class="d-flex in-dec-val">
+                                                <input type="text" value="0.1" class="InDeVal1">
+                                                <div class="btn-area">
+                                                    <button class="plus">
+                                                        <img src="/static/winza/img/up-arrow.png" alt="iconb">
+                                                    </button>
+                                                    <button class="minus">
+                                                        <img src="/static/winza/img/down-arrow.png" alt="iconb2">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="single-area quick-amounts">
+                                            <div class="item-title d-flex align-items-center">
+                                                <p>Quick Amounts</p>
+                                            </div>
+                                            <div class="input-item">
+                                                <button class="quickIn">0.005</button>
+                                                <button class="quickIn">0.025</button>
+                                                <button class="quickIn">0.1</button>
+                                                <button class="quickIn">0.5</button>
+                                                <button class="quickIn">2.5</button>
+                                            </div>
+                                        </div>
+                                        <div class="single-area smart-value">
+                                            <div class="item-title d-flex align-items-center">
+                                                <p class="mdr">Smart Contact Value</p>
+                                            </div>
+                                            <div class="contact-val d-flex align-items-center">
+                                                <h4>0.1103</h4>
+                                                <h5>ETH</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom-area">
+                                        <div class="fee-area">
+                                            <p>Winner will get: <span class="amount">0.179</span> ETH</p>
+                                            <p class="fee">Escrow Fee: <span>5%</span></p>
+                                        </div>
+                                        <div class="btn-area">
+                                            <button>Make (0.1 ETH) Bet</button>
+                                        </div>
+                                        <div class="bottom-right">
+                                            <p>Game Closes:</p>
+                                            <p class="date-area">Mar <span>21,2021-1:00</span> Am</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Betpop Up Modal end -->    
+    {% block footer %}
+
+    <!-- Footer Area Start -->
+    <footer class="footer-section">
+        <div class="container pt-120">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="newsletter">
+                        <div class="section-text text-center">
+                            <h5 class="sub-title">Subscribe Us</h5>
+                            <h3 class="title">For Newsletter</h3>
+                            <p>Subscribe to our newsletter to receive all the latest news and updates</p>
+                        </div>
+                        <form action="/">
+                            <div class="form-group d-flex align-items-center">
+                                <input type="text" placeholder="Enter your email Address">
+                                <button><img src="/static/winza/img/arrow-right-2.png" alt="icon"></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-area pt-120">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="menu-item">
+                            <a href="/" class="logo">
+                                <img src="/static/winza/img/logo.png" alt="logo">
+                            </a>
+                            <ul class="footer-link">
+                                <li><a href="{% url 'home:contact'%}">Contact</a></li>
+                                <li><a href="/">Terms of Services</a></li>
+                                <li><a href="/">Privacy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="copyright">
+                            <div class="copy-area">
+                                <p> Copyright ©2023 <a href="https://www.linkedin.com/in/kipngeno-gibeon-27b9765a/">Winzangu</a>|All rights reserved<a href="https://github.com/gibeongideon" class="auth">®</a>
+                                </p>
+                            </div>
+                            <div class="social-link d-flex align-items-center">
+                                <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+    
+    
+    
+    {% endblock footer %}
+        
+
+    <!--==================================================================-->
+
+    
+    <script src="/static/winza/js/jquery.min.js"></script>
+    <script src="/static/winza/js/jquery-ui.js"></script>
+    <script src="/static/winza/js/bootstrap.min.js"></script>
+    <script src="/static/winza/js/fontawesome.js"></script>
+    <script src="/static/winza/js/slick.js"></script>
+    <script src="/static/winza/js/jquery.nice-select.min.js"></script>
+    <script src="/static/winza/js/jquery.downCount.js"></script>
+    <script src="/static/winza/js/counter.js"></script>
+    <script src="/static/winza/js/waypoint.min.js"></script>
+    <script src="/static/winza/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/winza/js/wow.min.js"></script>
+    <script src="/static/winza/js/plugin.js"></script>
+    <script src="/static/winza/js/main.js"></script>
+{% block javascripts %}
+
+    <script>
+  function sPass() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+  </script>
+
+    <script>
+  function sPass2() {
+  var x = document.getElementById("password1");
+  var y = document.getElementById("password2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+
+  if (y.type === "password") {
+    y.type = "text";
+  } else {
+    y.type = "password";
+  }
+}
+  </script>
+    <script>
+  function sPass1() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+  
+}
+  </script>  
+  
+
+
+  
+{% endblock javascripts %}
+
+</body></html>

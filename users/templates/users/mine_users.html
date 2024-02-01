@@ -1,0 +1,85 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block title %}My Company {% endblock %} 
+
+
+
+{% block content %}
+	<!-- Breadcrumb Area Start -->
+	{% comment %} <section class="breadcrumb-area bc-affiliate">
+		<div class="container">
+
+		</div>
+	</section> {% endcomment %}
+	<!-- Breadcrumb Area End -->
+
+
+
+
+	<!-- Awards Area Start -->
+	<section class="awards-area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 col-md-10">
+					<div class="section-heading">
+
+   
+						<h2 class="title">USERS
+              </h2>
+						<h5 class="subtitle">
+							Refer for more users 
+						</h5>	
+					</div>
+				</div>
+			</div>
+			<div class="row">
+
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Username
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  date_joint
+                </th>
+                <th class="text-center">
+                  Last_login
+                </th>
+              </tr>
+            </thead>
+            <tbody class=" text-info">
+              {% for userr in mine_users%}
+
+              <tr>
+                <td>
+                  {{userr.username}}
+                </td>
+                <td>
+                  {{userr.email}}
+                </td>
+                <td>
+                  {{userr.date_joined}}
+                </td>
+                <td class="text-center">
+                  {{userr.last_login}}
+                </td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>        
+
+
+		</div>
+	</section>
+
+
+
+{% endblock content %}

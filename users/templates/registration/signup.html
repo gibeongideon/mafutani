@@ -1,0 +1,102 @@
+
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h4 class="title">"
+          
+          "	</h4>
+					<ul class="breadcrumb-list">
+
+						<li>
+							<span><i class="fas fa-chevron-right"></i> </span>
+						</li>
+				
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+	<!-- Footer Area Start -->
+	<footer class="footer" id="footer">
+			<div class="subscribe-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="subscribe-box">
+
+
+
+	<!-- SignIn Area Start -->
+
+						<div class="header-area">
+							<h4 class="title">Welcome new member!</h4>
+							<p class="sub-title">Enter your details below.</p>
+						</div> 
+						{% comment %} <div class="form-area"> {% endcomment %}
+							<form role="form" method="POST" action="{% url 'users:register' %}">
+							    {% csrf_token %}
+
+
+                {% for field in form %}
+
+                    <div class="col-lg-6 col-8 d-flex align-self-center">
+                        <div class="form-area">
+                            {{ field }}         
+                        </div>
+                    </div>
+                    
+                    {% if field.errors %}
+                        <span class="text-danger">{{ field.errors|join:'<br />' }}</span>
+                    {% endif %}
+
+         
+                {% endfor %}
+				
+
+												<div class="box" align="left">
+                                <input type="checkbox" onclick="sPass()">Show Password
+
+								</div>
+
+
+								<div class="form-group">
+									<div class="check-group">
+											<input type="checkbox" class="check-box-field" id="input-terms" required>
+											<label for="input-terms">
+													I agree with <a href="#">terms and Conditions</a> and  <a href="#">privacy policy</a>
+											</label>
+									</div>
+								</div>
+								<div class="form-group">
+									<button type="submit" class="mybtn1">Signup</button>
+								</div>
+							</form>
+						{% comment %} </div> {% endcomment %}
+
+		<!-- SignIn Area End -->
+
+
+
+
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+	</footer> 
+
+
+{% endblock content %}

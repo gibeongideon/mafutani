@@ -1,0 +1,170 @@
+{% extends "layouts/base.html" %}
+<!-- Static assets -->
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+    {% block header %}
+                          
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/">Home</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'spinx:spinx' %}">Spin&Win</a>
+                                </li>                                                 
+
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="/affiliate">Affiliate</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{% url 'home:contact' %}">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{% url 'home:dashboard' %}">Dashboard</a>
+                                </li> 
+       
+    {% endblock header%}
+
+    
+    {% block content %} 
+
+    <!-- Banner Section start -->
+    <section class="banner-section inner-banner contact">
+        <div class="overlay">
+            <div class="shape-area">
+                <img src="/static/winza/img/contact-illus.png" class="contact-illu" alt="image">
+            </div>
+            <div class="banner-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-10">
+                            <div class="main-content">
+                                <h1>Contact Us</h1>
+                                <div class="breadcrumb-area">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb d-flex align-items-center">
+                                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section end -->
+
+    <!-- Contact In start -->
+    <section class="contact-section">
+        <div class="overlay">
+            <div class="container bg-area">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="section-header text-center">
+                            <h2 class="title">Get in touch with us</h2>
+                            <p>Fill up the form and our team will get back to you within 2 hours</p>
+                            <p class="sub-title">{{ mssg}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="form-content">
+                            <form action="{% url 'home:contact' %}" method="post">
+                            {% csrf_token %}
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6">
+                                        <div class="single-input">
+                                            <label for="name">Name</label>
+                                            <input name="name"   type="text" id="id_name" placeholder="What&#39;s your name?">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-input">
+                                            <label for="email">Your email address</label>
+                                            <input name="email"   type="email" id="id_email" placeholder="What&#39;s your Email?">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-input">
+                                            <label for="phone">Phone</label>
+                                            <input name="phone"   type="text" id="id_phone" placeholder="(123) 480 - 3540">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-input">
+                                            <label for="subject">Subject</label>
+                                            <input name="subject"  type="text" id="id_subject" placeholder="Enter Your Subject?">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="single-input">
+                                            <label for="message">Message</label>
+                                            <textarea name="message" id="id_message" placeholder="I would like to get in touch with you..." cols="30" rows="10"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6 col-10">
+                                        <div class="btn-border w-100 mt-40">
+                                            <button class="cmn-btn w-100">Send Message</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact In end -->
+    
+
+    <!-- FAQs In start -->
+    <section class="faqs-section">
+        <div class="overlay pt-120">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-header text-center">
+                            <h5 class="sub-title">Frequently Asked Questions</h5>
+                            <h2 class="title">If you have questions we have answer</h2>
+                            <p>Answers for our most popular questions about Spin&Win and Winzangu</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row faq-bg d-flex justify-content-center">
+                    <div class="col-xl-10">
+                        <div class="faq-box mt-60 mb-60">
+                            <div class="accordion" id="accordionFaqs">    
+                           {% for aq in faqq %}
+                                
+                                <div class="accordion-item">
+                                    <h5 class="accordion-header" id="heading{{aq.id}}">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{aq.id}}" aria-expanded="false" aria-controls="collapse{{aq.id}}">
+                                            {{ aq.question }}
+                                        </button>
+                                    </h5>
+                                    <div id="collapse{{aq.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{aq.id}}" data-bs-parent="#accordionFaqs">
+                                        <div class="accordion-body">
+                                            <p>{{ aq.answer }}.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                             {% endfor %}  
+           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQs In end -->  
+        
+
+
+{% endblock content %}
