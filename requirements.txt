@@ -28,11 +28,3 @@ twilio==8.11.1
 typing_extensions==4.9.0
 urllib3==2.1.0
 yarl==1.9.4
-
-# mock==1.0.1;python_version<'3'
-# enum34==1.1.6;python_version<'3'
-# ipaddress==1.0.19;python_version<'3'
-# pyasn1>0.4.2
-# vcrpy>1.11.1
-# ndg-httpsclient>0.4.4
-# m2crypto>0.30.1
