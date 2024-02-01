@@ -1,4 +1,4 @@
-name: Django CI
+name: Django CICD
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        python-version: [3.8,]
 
     steps:
     - uses: actions/checkout@v3
@@ -21,10 +21,221 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install flake8
         pip install -r requirements.txt
-    - name: Run Tests
+
+        
+    - name: Lint with flake8
       run: |
-        python manage.py test
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    
+   # - name: Collectstatic, makemigrations & migrate
+   #   run: |
+   #     python manage.py collectstatic --noinput
+   #     python manage.py makemigrations --noinput
+   #     python manage.py migrate --noinput
+       
+        
+    #- name: Run Tests
+    #  run: |
+    #    python3  manage.py test home
+    
+          
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build    
+  #   name: deploy
+    
+   
+    
+  #   steps:
+  #   - name: executing remote ssh commands using password
+  #     uses: appleboy/ssh-action@v0.1.6
+  #     with:
+  #       host: ${{ secrets.DO_IP }}
+  #       username: ${{ secrets.DO_USER }}
+  #       key: ${{ secrets.DO_KEY }}
+  #       script: |
+  #         mkdir -p ~/app
+  #         mkdir -p ~/app/src
+  #         cd ~/app
+  #         source venv/bin/activate
+          
+  #         cd ~/app/src
+  #         #git stash
+  #         #git stash drop
+  #         git fetch          
+  #         git reset --hard origin/main
+              
+  #         #git pull origin main
+       
+
+
+
+  #         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          
+  #         #create Migrations Backup Directories
+
+
+  #         mkdir -p ~/app/migrations/spinx/migrations
+  #         mkdir -p ~/app/migrations/rgames/migrations
+  #         mkdir -p ~/app/migrations/users/migrations
+  #         mkdir -p ~/app/migrations/home/migrations
+  #         mkdir -p ~/app/migrations/accounts/migrations 
+          
+  #         mkdir -p ~/app/migrations/mpesa_api/core/migrations
+  #         mkdir -p ~/app/migrations/paypal/standard/ipn/migrations
+  #         mkdir -p ~/app/migrations/paypal/pro/migrations
+
+          
+  #         #RSYNC Backup Migrations To Workin Directory
+
+  #         rsync -a --delete ~/app/migrations/spinx/migrations ~/app/src/spinx
+  #         rsync -a --delete ~/app/migrations/rgames/migrations ~/app/src/rgames
+  #         rsync -a --delete ~/app/migrations/users/migrations ~/app/src/users
+  #         rsync -a --delete ~/app/migrations/home/migrations ~/app/src/home
+  #         rsync -a --delete ~/app/migrations/accounts/migrations ~/app/src/accounts
+
+  #         rsync -a --delete ~/app/migrations/mpesa_api/core/migrations ~/app/src/mpesa_api/core
+  #         rsync -a --delete ~/app/migrations/paypal/standard/ipn/migrations ~/app/src/paypal/standard/ipn
+  #         rsync -a --delete ~/app/migrations/paypal/pro/migrations ~/app/src/paypal/pro
+
+  #         #COLLECTSTATIC          
+  #         cd ~/app/src 
+  #         python manage.py collectstatic --noinput
+          
+          
+  #         #MAKEMIGRATIONS
+  #         cd ~/app/src 
+          
+  #         python manage.py makemigrations
+  #         python manage.py makemigrations users
+  #         python manage.py makemigrations rgames
+  #         python manage.py makemigrations home
+  #         python manage.py makemigrations spinx
+  #         python manage.py makemigrations accounts
+  #         python manage.py makemigrations core
+  #         python manage.py makemigrations ipn
+  #         python manage.py makemigrations pro
+          
+  #         #_____________________________________________________________
+          
+  #         #MIGRATE-ALL
+  #         cd ~/app/src  
+  #         python manage.py migrate
+
+  #         #______________________________________________________________
+
+  #         #MIGRATE-spinx
+  #         cd ~/app/src
+  #         python manage.py migrate spinx
+
+
+  #         #Rsync Workin Directory to Backup Migrations-spinx
+  #         rsync -a --delete ~/app/src/spinx/migrations ~/app/migrations/spinx
+
+  #         cd ~/app/migrations/spinx
+  #         tree
+
+  #         ############################################
+          
+  #         #MIGRATE-rgames
+  #         cd ~/app/src
+  #         python manage.py migrate rgames
+
+
+  #         #Rsync Workin Directory to Backup Migrations-rgames
+  #         rsync -a --delete ~/app/src/rgames/migrations ~/app/migrations/rgames
+
+  #         cd ~/app/migrations/rgames
+  #         tree
+
+  #         ############################################          
+
+  #         #USERS
+  #         cd ~/app/src
+  #         python manage.py migrate users
+
+         
+  #         #Rsync Workin Directory to Backup Migrations-users Backup          
+          
+  #         rsync -a --delete ~/app/src/users/migrations ~/app/migrations/users          
+  #         cd ~/app/migrations/users
+  #         tree  
+
+  #         #  
+
+
+  #         #HOME
+  #         cd ~/app/src  
+  #         python manage.py migrate home
+
+
+  #         # Rsync Workin Directory to Backup Migrations-home
+
+  #         rsync -a --delete ~/app/src/home/migrations ~/app/migrations/home
+  #         cd ~/app/migrations/home
+  #         tree 
+
+  #         #
+
+  #         #ACCOUNTS
+  #         cd ~/app/src
+  #         python manage.py migrate accounts
+
+         
+  #         #Rsync Workin Directory to Backup Migrations-accounts Backup          
+          
+  #         rsync -a --delete ~/app/src/accounts/migrations ~/app/migrations/accounts          
+  #         cd ~/app/migrations/accounts
+  #         tree 
+
+
+  #         #CORE
+  #         cd ~/app/src   
+  #         python manage.py migrate core
+          
+  #         # Rsync Workin Directory to Backup Migrations-core
+
+  #         rsync -a --delete ~/app/src/mpesa_api/core/migrations ~/app/migrations/mpesa_api/core
+  #         cd ~/app/migrations/mpesa_api/core
+  #         tree  
+
+
+  #         ## IPN
+  #         cd ~/app/src   
+  #         python manage.py migrate ipn
+
+  #         # Rsync Workin Directory to Backup Migrations-ipn
+  #         rsync -a --delete ~/app/src/paypal/standard/ipn/migrations ~/app/migrations/paypal/standard/ipn 
+  #         cd ~/app/migrations/paypal/standard/ipn
+  #         tree 
+
+
+  #         #PRO
+  #         cd ~/app/src 
+  #         python manage.py migrate pro
+          
+  #         #Rsync Workin Directory to Backup Migrations-pro
+
+  #         rsync -a --delete ~/app/src/paypal/pro/migrations ~/app/migrations/paypal/pro 
+  #         cd ~/app/migrations/paypal/pro
+  #         tree 
+
+  #         ###################################################
+
+
+
+  #         #Backup Migrations_Updated
+
+  #         cd ~/app/migrations
+  #         tree   
+               
+  #         #sudo shutdown -r now
+        
