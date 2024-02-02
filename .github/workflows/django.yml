@@ -9,11 +9,11 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.12,]
+        python-version: [3.10.12,3.12]
 
     steps:
     - uses: actions/checkout@v3
@@ -45,25 +45,51 @@ jobs:
     #- name: Run Tests
     #  run: |
     #    python3  manage.py test home
-    
-          
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build    
-    name: deploy
+
+
+  # deploy:
+  #   runs-on: self-hosted
+  #   needs: build
+  #   name: deploy
+
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Set up Python 3.8
+  #     uses: actions/setup-python@v2
+  #     with:
+  #       python-version: 3.8
+
+  #   - name: Create Vitrual_Env & Install Dependencies
+  #     run: |
+  #       # sudo -H pip3 install --upgrade pip 
+  #       # sudo -H pip3 install virtualenv
+  #       # sudo -H pip3 install tree ##FIXIT
+
+  #       mkdir -p ~/dariapp
+  #       cd ~/dariapp
+
+  #       # virtualenv env
+  #       source env/bin/activate
+
+  
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build    
+  #   name: deploy
     
    
     
-    steps:
-    - name: executing remote ssh commands using password
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{ secrets.DO_IP }}
-        username: ${{ secrets.DO_USER }}
-        key: ${{ secrets.DO_KEY }}
-        script: |
+    # steps:
+    # - name: executing remote ssh commands using password
+    #   uses: appleboy/ssh-action@v0.1.6
+    #   with:
+    #     host: ${{ secrets.DO_IP }}
+    #     username: ${{ secrets.DO_USER }}
+    #     key: ${{ secrets.DO_KEY }}
+    #     script: |
           # mkdir -p ~/app
-          whoami
+          # whoami
           # mkdir -p ~/app/src
           # cd ~/app
           # source venv/bin/activate
@@ -240,3 +266,266 @@ jobs:
                
   #         #sudo shutdown -r now
         
+
+# name: dariapp CI/CD
+
+# on:
+#   push:
+#     branches: [ main ]
+#   # pull_request:
+#   #   branches: [ prod ]
+
+
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+#     name: build
+
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Set up Python 3.8
+#       uses: actions/setup-python@v2
+#       with:
+#         python-version: 3.8
+          
+#     - name: Install dependencies
+#       run: |
+#         python -m pip install --upgrade pip
+#         pip install flake8
+#         pip install -r requirements.txt
+
+
+#     - name: Lint with flake8
+#       run: |
+#         # stop the build if there are Python syntax errors or undefined names
+#         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+#         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+#         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    
+#     - name: Collectstatic, makemigrations & migrate
+#       run: |
+        
+#         python manage.py collectstatic
+        # python manage.py makemigrations users
+        # python manage.py makemigrations home
+        # python manage.py makemigrations account
+        # python manage.py makemigrations daru_wheel
+        # python manage.py makemigrations core
+        # python manage.py makemigrations
+
+        # python manage.py migrate
+
+    # - name: Run Tests
+    #   run: |
+    #     python manage.py test account users daru_wheel
+
+        
+  # deploy:
+  #   runs-on: self-hosted
+  #   needs: build
+  #   name: deploy
+
+
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: Set up Python 3.8
+  #     uses: actions/setup-python@v2
+  #     with:
+  #       python-version: 3.8
+
+  #   - name: Create Vitrual_Env & Install Dependencies
+  #     run: |
+  #       # sudo -H pip3 install --upgrade pip 
+  #       # sudo -H pip3 install virtualenv
+  #       # sudo -H pip3 install tree ##FIXIT
+
+  #       mkdir -p ~/dariapp
+  #       cd ~/dariapp
+
+  #       # virtualenv env
+  #       source env/bin/activate
+
+
+  #       cd ~/actions-runner/deploy/dariapp/dariapp
+  #       if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+
+  #   # - name: Install Dependencies
+  #   #   run: |
+  #   #     pwd
+  #   #     cd ~/actions-runner/deploy/dariapp/dariapp
+        
+  #   #     python -m pip install --upgrade pip    
+  #   #     python -m pip install tree #R
+  #   #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+  #   - name: Create ENV VAR
+  #     run: |
+  #       mkdir -p ~/dariapp
+  #       mkdir -p ~/dariapp/src
+  #       touch ~/dariapp/.env
+  #       cp ~/dariapp/.env  ~/actions-runner/deploy/dariapp/dariapp
+
+
+  #   - name: Create Migrations Backup Directories
+  #     run: |  
+  #       mkdir -p ~/dariapp/migrations/account/migrations
+  #       mkdir -p ~/dariapp/migrations/daru_wheel/migrations
+  #       mkdir -p ~/dariapp/migrations/users/migrations
+  #       mkdir -p ~/dariapp/migrations/home/migrations
+  #       mkdir -p ~/dariapp/migrations/mpesa_api/core/migrations
+  #       mkdir -p ~/dariapp/migrations/paypal/standard/ipn/migrations
+  #       mkdir -p ~/dariapp/migrations/paypal/pro/migrations
+
+  #       cd ~/dariapp/migrations
+  #       tree
+
+
+  #   - name: RSYNC Backup Migrations To Workin Directory
+  #     run: |
+  #       rsync -a --delete ~/dariapp/migrations/account/migrations ~/actions-runner/deploy/dariapp/dariapp/account
+  #       rsync -a --delete ~/dariapp/migrations/daru_wheel/migrations ~/actions-runner/deploy/dariapp/dariapp/daru_wheel
+  #       rsync -a --delete ~/dariapp/migrations/users/migrations ~/actions-runner/deploy/dariapp/dariapp/users
+  #       rsync -a --delete ~/dariapp/migrations/home/migrations ~/actions-runner/deploy/dariapp/dariapp/home
+  #       rsync -a --delete ~/dariapp/migrations/mpesa_api/core/migrations ~/actions-runner/deploy/dariapp/dariapp/mpesa_api/core
+  #       rsync -a --delete ~/dariapp/migrations/paypal/standard/ipn/migrations ~/actions-runner/deploy/dariapp/dariapp/paypal/standard/ipn
+  #       rsync -a --delete ~/dariapp/migrations/paypal/pro/migrations ~/actions-runner/deploy/dariapp/dariapp/paypal/pro
+
+        
+  #   - name: COLLECTSTATIC
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp                
+  #       python manage.py collectstatic
+
+  #   - name: MAKEMIGRATIONS
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp 
+  #       python manage.py makemigrations
+  #       python manage.py makemigrations users
+  #       python manage.py makemigrations home
+  #       python manage.py makemigrations account
+  #       python manage.py makemigrations daru_wheel
+  #       python manage.py makemigrations core
+  #       python manage.py makemigrations ipn
+  #       python manage.py makemigrations pro
+
+  #   ## All
+  #   - name: APP-MIGRATE
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp        
+  #       python manage.py migrate
+
+  #   ## account
+  #   - name: MIGRATE-account
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp        
+  #       python manage.py migrate account
+
+  #   - name: Rsync Workin Directory to Backup Migrations-account
+  #     run: |
+  #       rsync -a --delete ~/actions-runner/deploy/dariapp/dariapp/account/migrations ~/dariapp/migrations/account
+  #       cd ~/dariapp/migrations/account
+  #       tree
+
+  #   ## daru_wheel
+  #   - name: MIGRATE-daru_wheel
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp        
+  #       python manage.py migrate daru_wheel
+
+  #   - name: Rsync Workin Directory to Backup Migrations-daru_wheel
+  #     run: |
+  #       rsync -a --delete ~/actions-runner/deploy/dariapp/dariapp/daru_wheel/migrations ~/dariapp/migrations/daru_wheel
+  #       cd ~/dariapp/migrations/daru_wheel
+  #       tree
+
+  #   ## users
+  #   - name: MIGRATE-users
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp        
+  #       python manage.py migrate users
+
+  #   - name: Rsync Workin Directory to Backup Migrations-users
+  #     run: |
+  #       rsync -a --delete ~/actions-runner/deploy/dariapp/dariapp/users/migrations ~/dariapp/migrations/users
+  #       cd ~/dariapp/migrations/users
+  #       tree    
+  #   ## home
+  #   - name: MIGRATE-home
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp        
+  #       python manage.py migrate home
+
+  #   - name: Rsync Workin Directory to Backup Migrations-home
+  #     run: |
+  #       rsync -a --delete ~/actions-runner/deploy/dariapp/dariapp/home/migrations ~/dariapp/migrations/home
+  #       cd ~/dariapp/migrations/home
+  #       tree  
+
+  #   ## core
+  #   - name: MIGRATE-core
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp        
+  #       python manage.py migrate core
+
+  #   - name: Rsync Workin Directory to Backup Migrations-core
+  #     run: |
+  #       rsync -a --delete ~/actions-runner/deploy/dariapp/dariapp/mpesa_api/core/migrations ~/dariapp/migrations/mpesa_api/core
+  #       cd ~/dariapp/migrations/mpesa_api/core
+  #       tree   
+
+  #   ## ipn
+  #   - name: MIGRATE-ipn
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp        
+  #       # python manage.py migrate ipn
+
+  #   - name: Rsync Workin Directory to Backup Migrations-ipn
+  #     run: |
+  #       rsync -a --delete ~/actions-runner/deploy/dariapp/dariapp/paypal/standard/ipn/migrations ~/dariapp/migrations/paypal/standard/ipn 
+  #       cd ~/dariapp/migrations/paypal/standard/ipn
+  #       tree 
+
+  #   ## pro
+  #   - name: MIGRATE-pro
+  #     run: |
+  #       cd ~/actions-runner/deploy/dariapp/dariapp        
+  #       python manage.py migrate pro
+
+  #   - name: Rsync Workin Directory to Backup Migrations-pro
+  #     run: |
+  #       rsync -a --delete ~/actions-runner/deploy/dariapp/dariapp/paypal/pro/migrations ~/dariapp/migrations/paypal/pro 
+  #       cd ~/dariapp/migrations/paypal/pro
+  #       tree 
+
+  #   # - name: Rsync Updated APP to Workin Directory
+  #   #   run: |
+  #   #     rsync -a --delete ~/actions-runner/deploy/dariapp/dariapp ~/dariapp/src
+  #   #     cd ~/dariapp/src
+  #   #     # tree
+  #   - name: Backup Migrations_Updated
+  #     run: |
+  #       cd ~/dariapp/migrations
+  #       tree
+
+
+  #   - name: Test Redis
+  #     run: |
+  #       redis-cli ping
+
+
+  #   # - name: Run Tests
+  #   #   run: |
+  #   #     python manage.py test
+
+
+  #   # - name: Reload
+  #   #   run: |
+  #   #     sudo shutdown -r now
+
+  #   # - name: Reload
+  #   #   run: |
+  #   #     sudo restart
+
