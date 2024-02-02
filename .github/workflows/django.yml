@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-22.04
     strategy:
       max-parallel: 4
@@ -47,27 +46,29 @@ jobs:
     #    python3  manage.py test home
 
 
-  # deploy:
-  #   runs-on: self-hosted
-  #   needs: build
-  #   name: deploy
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    name: deploy
 
 
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Set up Python 3.8
-  #     uses: actions/setup-python@v2
-  #     with:
-  #       python-version: 3.8
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.10.12
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.12
 
-  #   - name: Create Vitrual_Env & Install Dependencies
-  #     run: |
-  #       # sudo -H pip3 install --upgrade pip 
-  #       # sudo -H pip3 install virtualenv
-  #       # sudo -H pip3 install tree ##FIXIT
+    - name: Create Vitrual_Env & Install Dependencies
+      run: |
+        # sudo -H pip3 install --upgrade pip 
+        # sudo -H pip3 install virtualenv
+        # sudo -H pip3 install tree ##FIXIT
+        whoami
 
   #       mkdir -p ~/dariapp
   #       cd ~/dariapp
+  
 
   #       # virtualenv env
   #       source env/bin/activate
