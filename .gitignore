@@ -1,3 +1,4 @@
+ls
 postgres
 Dockerfile
 docker-compose.yml
