@@ -73,7 +73,7 @@ jobs:
         # sudo -H pip3 install tree ##FIXIT
         whoami
 
-        mkdir -p ~/dariapp
+     #    mkdir -p ~/dariapp
   #       cd ~/dariapp
   
 
