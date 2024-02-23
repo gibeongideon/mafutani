@@ -108,25 +108,25 @@ WSGI_APPLICATION = 'mafutani.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'django',
-#         'USER': 'django',
-#         'PASSWORD': '7cc09f7d3e3795ccc20c127878aa8e0e',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#         'OPTIONS': {'sslmode': 'require'},
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django',
+        'USER': 'django',
+        'PASSWORD': '7cc09f7d3e3795ccc20c127878aa8e0e',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'OPTIONS': {'sslmode': 'require'},
+    }
+}
 
 
 
