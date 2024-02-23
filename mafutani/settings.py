@@ -124,7 +124,7 @@ DATABASES = {
         'PASSWORD': '7cc09f7d3e3795ccc20c127878aa8e0e',
         'HOST': 'localhost',
         'PORT': '5432',
-        'OPTIONS': {'sslmode': 'require'},
+        # 'OPTIONS': {'sslmode': 'require'},
     }
 }
 
