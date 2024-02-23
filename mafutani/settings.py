@@ -119,9 +119,9 @@ WSGI_APPLICATION = 'mafutani.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'django',
+        'NAME': 'mafutanidb',
         'USER': 'django',
-        'PASSWORD': '7cc09f7d3e3795ccc20c127878aa8e0e',
+        'PASSWORD': 'PassCode54321',
         'HOST': 'localhost',
         'PORT': '5432',
         # 'OPTIONS': {'sslmode': 'require'},
